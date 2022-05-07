@@ -28,7 +28,7 @@ export const Publicboard = () => {
 	};
 
 	useEffect(() => {
-		getProjectData;
+		getProjectData();
 	}, []);
 
 	return (
