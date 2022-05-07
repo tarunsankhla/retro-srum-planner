@@ -2,11 +2,12 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 70vh;
+	height: max;
 	box-shadow: 0 4px 2px rgba(0, 0, 0, 0.02), 0 8px 16px rgba(0, 0, 0, 0.03),
 		0 16px 10px rgba(0, 0, 0, 0.04), 0 26px 18px rgba(0, 0, 0, 0.05);
-	margin: 3em;
-	background-color: #ffdd61;
+	margin: 2rem auto;
+	background-color: #bab3e8;
+    width: fit-content;
 }
 
 .login-container {
@@ -17,16 +18,11 @@
 	background-color: transparent;
 	width: 50vw;
 	height: fit-content;
-	/* box-shadow: 0 0 5px 0 #e0e5e5; */
 	border-radius: var(--border-radius);
 	font-size: 1.5rem;
 	padding: 2rem 0;
 	gap: 1em;
 	border-radius: 2em;
-	/* box-shadow: 0 4px 2px rgba(0,0,0,0.02),
-    0 8px 16px rgba(0,0,0,0.03),
-    0 16px 10px rgba(0,0,0,0.04),
-    0 26px 18px rgba(0,0,0,0.05); */
 }
 
 .login-credential-container {
@@ -56,7 +52,11 @@
 
 .login-action-btn {
 	display: block;
-	font-size: 2rem;
+	font-size: 1.5rem;
+	border: 0;
+	padding: 5px 1rem;
+	border-radius: 5px;
+	background-color: #0f96df;
 }
 
 .login-btn-container {
@@ -86,9 +86,19 @@
 }
 
 .login-logo {
-	max-width: 30vw;
-	height: 50vh;
+	max-width: max-content;
+	height: 50px;
+	padding: 5px 1rem;
+	border: 2px solid rgb(255, 108, 71);
+	border-radius: 5px;
+	color: rgb(38, 38, 38);
 }
+
+.login-logo i{
+	color: rgb(255, 108, 71);;
+
+}
+
 .error {
 	color: red;
 	font-weight: 500;

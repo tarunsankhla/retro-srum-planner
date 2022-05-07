@@ -77,7 +77,6 @@ export const LoginPage = () => {
   return (
     <>
       <div className="login-body-container">
-        <img src={Login} className="login-logo" alt="login-logo" />
         <div className="login-container">
           <div className="title-header">
             <div className="login-credential-container">
@@ -98,37 +97,24 @@ export const LoginPage = () => {
                 id=""
               />
             </div>
-            <div className="login-rem-forgetpass-container">
-              <div>
-                <input type="checkbox" name="" id="" />
-                Remember me
-              </div>
-              <div className="btn-link">Forgot your password?</div>
-            </div>
-            <div className="login-btn-container">
-              <div className="btn login-action-btn" onClick={onSubmitHandler}>
+              <button className="btn primary-btn-md" onClick={onSubmitHandler}>
                 Login
-              </div>
-            </div>
-            <div className="login-btn-container">
-              <div
-                className="btn login-action-btn"
+              </button>
+              <button
+                className="btn primary-btn-md"
                 onClick={() => {
                   guestUserHandler();
                 }}
               >
                 Guest User
-              </div>
-            </div>
-            <div>
+              </button>
+            <button 
+                className=" login-logo">
               <i className="fab fa-google" onClick={LoginWIthGoogleAuth}>
-                Google
-              </i>
-            </div>
-
-            <Link className="login-footer" to="/signup">
+              </i>Login with Google
+            </button>
+            <Link className="btn primary-text-btn-sm create-account-btn " to="/signup">
               Create New Account
-              <span className="material-icons-round">navigate_next</span>
             </Link>
           </div>
         </div>
