@@ -1,0 +1,59 @@
+
+.createboard-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+    background-color: #00000044;
+    z-index: 10;
+}
+
+.createboard-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 500px;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+}
+
+.createboard-title{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.createboard-input-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 2px;
+}
+
+.createboard-input-label{
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    color: black;
+}
+
+.createboard-input{
+    font-size: 1rem;
+    border: 0px;
+    padding: 0.6rem;
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid rgb(184, 184, 184);
+    background-color: rgb(230, 230, 230);
+    transition: border 0.3s ease-in;
+}
+.createboard-input:focus-visible{
+    outline: none;
+}
