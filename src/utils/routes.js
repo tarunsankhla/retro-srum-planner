@@ -1,6 +1,6 @@
 export const ROUTES = {
   ROUTE_PATH_LandingPage: "/",
-  ROUTE_PATH_UserDashboaedPage: "/maindashboard",
+  ROUTE_PATH_UserDashboaedPage: "/dashboard",
   ROUTE_PATH_PublicDashboardPage: "/publicdashboard/:id",
   ROUTE_PATH_Unknown: "*",
   ROUTE_PATH_LoginPage: "/login",

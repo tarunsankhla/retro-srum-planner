@@ -6,9 +6,11 @@ import "./Navbar.css";
 export const Navbar = () => {
   return (
     <div className="navbar-wrapper flex-row-center flex-justify-space-between pd-1-all">
-      <div>
-        <img src={logo} alt="logo" className="navbar-logo" />
-      </div>
+      <Link to="/">
+        <div>
+          <img src={logo} alt="logo" className="navbar-logo" />
+        </div>
+      </Link>
 
       <div className="navbar-auth-section flex-row-center">
         <div className="publicboard-searchbar">
