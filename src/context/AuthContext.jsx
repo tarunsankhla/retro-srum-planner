@@ -1,4 +1,12 @@
-import React, { createContext, useContext, useReducer, useState } from "react";
+import { firestore } from "firebase.config";
+import { doc, setDoc } from "firebase/firestore";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { ROUTES } from "utils/routes";
 
 const AuthContext = createContext(null);
@@ -33,6 +41,21 @@ const AuthProvider = ({ children }) => {
   );
 
   localStorage.setItem(ROUTES.VAR_ENCODE_TOKEN, JSON.stringify(userState));
+
+  // useEffect(() => {
+  // 	if (!!useState.token) {
+  // 		const userRef = doc(firestore, `users/${userState.user.userId}`);
+  // 		const setData = async () => {
+  // 			try {
+  // 				const response = await setDoc(userRef, {});
+  // 				console.log(response);
+  // 			} catch (err) {
+  // 				console.log(err);
+  // 			}
+  // 		};
+  // 		setData();
+  // 	}
+  // }, [userState]);
 
   return (
     <AuthContext.Provider value={{ userState, userDispatch }}>

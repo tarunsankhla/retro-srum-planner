@@ -12,8 +12,6 @@ export const MainDashboard = () => {
     setIsModal((s) => !s);
   };
 
-  console.log(dashboard);
-
   return (
     <div className="dashboard-container">
       <button className="dashboard-create-board" onClick={toggleModal}>

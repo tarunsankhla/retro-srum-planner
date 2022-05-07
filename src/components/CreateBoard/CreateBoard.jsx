@@ -8,14 +8,26 @@ import { useDashboard } from "context/DashboardContext";
 
 const initialBoardObject = {
   title: "",
-  date: {},
+  date: new Date(),
   maxVotes: 5,
   column1: {
     name: "Good features",
-    feedbacks: [{ textField: "comment 1", likes: 5 }],
+    feedbacks: [
+      { textField: "comment 1", likes: 5, comments: ["hello", "there"] },
+    ],
   },
-  column2: { name: "Improvements", commentsList: [] },
-  column3: { name: "Add Features", commentsList: [] },
+  column2: {
+    name: "Improvements",
+    feedbacks: [
+      { textField: "comment 1", likes: 5, comments: ["there", "asdljf"] },
+    ],
+  },
+  column3: {
+    name: "Add Features",
+    feedbacks: [
+      { textField: "comment 1", likes: 5, comments: ["thsdfere", "sjdlfj"] },
+    ],
+  },
 };
 
 // const
@@ -53,7 +65,7 @@ export function CreateBoard({ toggle }) {
     boardObject.userId = userState.user.userId;
     boardObject.id = uuid();
     // const collectionReference = collection(firestore, `users/`);
-    const userRef = doc(firestore, `users/${userState.user.emailId}`);
+    const userRef = doc(firestore, `users/${userState.user.userId}`);
     try {
       const response = await setDoc(userRef, {
         ...dashboard,

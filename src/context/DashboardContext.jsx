@@ -11,10 +11,10 @@ const DashboardProvider = ({ children }) => {
   const [updateData, setUpdateData] = useState(true);
 
   const getData = async () => {
-    const userRef = doc(firestore, `users/${userState.user.emailId}`);
+    const userRef = doc(firestore, `users/${userState.user.userId}`);
     try {
       const res1 = await getDoc(userRef);
-      setDashboard(res1.data());
+      setDashboard(res1.data() ?? {});
     } catch (err) {
       console.log(err);
     }
