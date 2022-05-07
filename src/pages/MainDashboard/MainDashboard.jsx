@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
-const MainDashboard = () => {
-  return (
-    <div>MainDashboard</div>
-  )
-}
-
-export default MainDashboard
+export const MainDashboard = () => {
+  return <div>MainDashboard</div>;
+};

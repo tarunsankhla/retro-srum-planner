@@ -1,0 +1,43 @@
+.publicboard-wrapper {
+  width: 95%;
+  min-height: 100vh;
+  padding: 1rem;
+  flex-direction: column;
+  margin: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.publicboard-searchbar input {
+  width: 25rem;
+  height: 1.6rem;
+  padding: 5px;
+}
+
+.publicboard-sorting {
+  width: 7rem;
+  height: 1.6rem;
+}
+
+.publicboard-toolbar {
+  justify-content: space-between;
+}
+
+.publicboard-body {
+  display: flex;
+}
+
+.publicboard-title {
+  font-size: 1rem;
+  padding-left: 10px;
+}
+
+.publicboard-wentwell,
+.publicboard-improve,
+.publicboard-actions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

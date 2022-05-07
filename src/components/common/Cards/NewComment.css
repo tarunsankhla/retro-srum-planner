@@ -1,0 +1,16 @@
+.new-comment-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed gray;
+  padding: 0 0.8rem;
+  margin: 8px;
+  height: 3rem;
+  border-radius: 10px;
+}
+
+.new-comment-wrapper i {
+  padding: 7px 8px;
+  margin: 0 1rem;
+  border-radius: 50%;
+}
