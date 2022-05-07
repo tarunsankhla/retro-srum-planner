@@ -20,7 +20,6 @@ export const LoginPage = () => {
   }
   const { userState, userDispatch } = useAuth();
   // let vari = useAuth();
-  console.log(userState);
   async function onSubmitHandler() {
     try {
       const response = await signInWithEmailAndPassword(
