@@ -1,5 +1,6 @@
 import logo from "data/Logo/logo.svg";
 import { Link } from "react-router-dom";
+import { ROUTES } from "utils/routes";
 import "./Navbar.css";
 
 export const Navbar = () => {
@@ -16,7 +17,7 @@ export const Navbar = () => {
           <input type="search" placeholder="Search" />
         </div>
         <button className="btn primary-btn-md" onClick={() => {}}>
-          Login
+          <Link to={ROUTES.ROUTE_PATH_LoginPage}>Login</Link>
         </button>
         <div class="avatar text-avatar-xsm-round">IN</div>
       </div>
