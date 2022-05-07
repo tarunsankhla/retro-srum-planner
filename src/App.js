@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import { Route, Routes } from 'react-router';
-import './App.css';
-import { ROUTE_PATH_LandingPage } from './utils/routes';
-import { Suspense } from 'react';
-import HomePage from './pages/HomePage/HomePage';
-import Main from './Main';
+import { Route, Routes } from "react-router";
+import "./App.css";
+import { ROUTES } from "./utils/routes";
+import { Suspense } from "react";
+import Main from "./Main";
+import { Publicboard, HomePage } from "pages";
 
 function App() {
   return (
     <div className="App">
-      <Routes >
+      <Routes>
         <Route element={<Main />}>
-          <Route path={ROUTE_PATH_LandingPage} element={
-            <Suspense fallback={<h1>Loading Home...</h1>}>
-              <HomePage />
-            </Suspense>}
+          <Route
+            path={ROUTES.ROUTE_PATH_LandingPage}
+            element={
+              <Suspense fallback={<h1>Loading Home...</h1>}>
+                <HomePage />
+              </Suspense>
+            }
           />
         </Route>
+        <Route
+          path={ROUTES.ROUTE_PATH_PublicDashboardPage}
+          element={<Publicboard />}
+        />
       </Routes>
-
     </div>
   );
 }
