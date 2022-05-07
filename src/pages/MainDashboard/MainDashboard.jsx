@@ -1,15 +1,15 @@
 import { CreateBoard } from "components";
 import BoardCard from "components/BoardCard/BoardCard";
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import "./MainDashboard.css";
 
-export const MainDashboard = () => {
 
-    const [isModal,setIsModal] = useState(false);
+export const MainDashboard = () => {
+    const [isModal, setIsModal] = useState(false);
 
     const toggleModal = () => {
-        setIsModal(s=>!s)
-    }
+        setIsModal((s) => !s);
+    };
 
     return (
         <div className="dashboard-container">
@@ -18,7 +18,8 @@ export const MainDashboard = () => {
                 Add board
             </button>
             <BoardCard />
-            {isModal && <CreateBoard toggle={toggleModal}/>}
+            <BoardCard />
+            {isModal && <CreateBoard toggle={toggleModal} />}
         </div>
     );
 };
