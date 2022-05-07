@@ -1,13 +1,13 @@
+import { useAuth } from 'context/AuthContext';
 import React from 'react'
-import { Navigate, useLocation } from 'react-router'
-
+import { Navigate, useLocation } from 'react-router';
 
 function RequiredAuth({ children }) {
     let location = useLocation();
-    let auth = true; // auth context will come here
-    console.log(auth.user)
-    if (!auth) { 
-        return <Navigate to="/" state={{from :location  }} replace/>    }
+    const { userState } = useAuth();
+
+    if (!userState.token && !userState.user.emailId) { 
+        return <Navigate to="/login" state={{from :location  }} replace/>    }
     return children;
 }
 
