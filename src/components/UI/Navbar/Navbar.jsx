@@ -6,6 +6,7 @@ import "./Navbar.css";
 
 export const Navbar = () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
   const { userState } = useAuth();
   return (
     <div className="navbar-wrapper flex-row-center flex-justify-space-between pd-1-all">
@@ -35,6 +36,13 @@ export const Navbar = () => {
   );
 =======
 	const { userState } = useAuth();
+=======
+	const { userState, userDispatch } = useAuth();
+
+	const LogoutHandler = () => {
+		userDispatch({ type: "reset" });
+	};
+>>>>>>> master
 	return (
 		<div className="navbar-wrapper flex-row-center flex-justify-space-between pd-1-all">
 			<Link to="/">
@@ -47,17 +55,25 @@ export const Navbar = () => {
 				<div className="publicboard-searchbar">
 					<input type="search" placeholder="Search" />
 				</div>
-				<button className="btn primary-btn-md" onClick={() => {}}>
-					<Link to={ROUTES.ROUTE_PATH_LoginPage}>Login</Link>
-				</button>
-
+				{!userState.token ? (
+					<button className="btn primary-btn-md" onClick={() => {}}>
+						<Link to={ROUTES.ROUTE_PATH_LoginPage}>Login</Link>
+					</button>
+				) : (
+					<button
+						className="btn primary-outline-btn-md"
+						onClick={LogoutHandler}
+					>
+						Logout 
+					</button>
+				)}
 				{userState.user.photo ? (
 					<div className="avatar avatar-xsm-round">
 						<img loading="lazy" src={userState.user.photo} alt="avatar-image" />
 					</div>
 				) : (
 					<div className="avatar text-avatar-xsm-round">IN</div>
-				)}
+				)}{" "}
 			</div>
 		</div>
 	);
