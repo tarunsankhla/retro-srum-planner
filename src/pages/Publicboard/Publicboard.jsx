@@ -1,13 +1,22 @@
 import "./Publicboard.css";
-import { AddFeedback, NewComment } from "components";
-import { CommentCard } from "components";
-import { firestore } from "firebase.config";
-import { useParams } from "react-router";
-import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
+import {NewComment, AddFeedback} from "components";
+import {CommentCard} from "components";
+import {firestore} from "firebase.config";
+import {useParams} from "react-router";
+import {useEffect, useState} from "react";
+import {doc, getDoc} from "firebase/firestore";
+import {ROUTES} from "utils/routes";
+import {AnonymousUser} from "utils/boardService";
+import {useAuth} from "context/AuthContext";
 
 export const Publicboard = () => {
-	const { userId, projectId } = useParams();
+    const {userId, projectId} = useParams();
+    console.log({
+        userId,
+        projectId
+    }, useParams());
+    const {userState, userDispatch} = useAuth();
+    const [project, setProject] = useState({});
 
 	console.log({ userId, projectId }, useParams());
 	const [isModal, setIsModal] = useState(false);
@@ -16,8 +25,6 @@ export const Publicboard = () => {
 	const toggleModal = () => {
 		setIsModal((isModal) => !isModal);
 	};
-
-	const [project, setProject] = useState({});
 
 	const getProjectData = async () => {
 		const userRef = doc(firestore, `users/${userId}`);
@@ -37,8 +44,17 @@ export const Publicboard = () => {
 	};
 
 	useEffect(() => {
-		getProjectData();
-	}, [projectId]);
+		if (!!localStorage.getItem(ROUTES.VAR_ENCODE_TOKEN)) {
+            var user = localStorage.getItem(ROUTES.VAR_ENCODE_TOKEN)?.user?.emailId
+            if (! user) {
+                AnonymousUser(userDispatch);
+            }
+        }
+    }, []);
+
+    useEffect(() => {
+        getProjectData();
+    }, [projectId]);
 
 	return (
 		<div className="publicboard-wrapper">
