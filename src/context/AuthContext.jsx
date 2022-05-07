@@ -31,7 +31,12 @@ const UserAuthReducer = (state, action) => {
 		};
 		return { token: action.token, user: user };
 	}
-	return { ...state };
+	else if(action.type === "reset"){
+		localStorage.removeItem(ROUTES.VAR_ENCODE_TOKEN);
+		return intitailState;
+	 }
+
+	return state ;
 };
 
 const AuthProvider = ({ children }) => {

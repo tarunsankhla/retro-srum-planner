@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth, GoogleAuthProvider,signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider,signInWithPopup,signInAnonymously } from "firebase/auth";
 import {
   collection,
   addDoc,
@@ -31,6 +31,7 @@ export {
   firestore,
   firebaseAuth,
   googleAuthProvider,
+  signInAnonymously,
   signInWithPopup,
   collection,
   doc,

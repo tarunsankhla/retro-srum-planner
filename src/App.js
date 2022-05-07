@@ -6,6 +6,7 @@ import Main from "./Main";
 import { Publicboard, HomePage, MainDashboard } from "pages";
 import { LoginPage } from "pages/LoginPage/LoginPage";
 import { SignUpPage } from "pages/SignUpPage/SignUpPage";
+import RequiredAuth from "components/common/privateroute/RequireAuth";
 
 function App() {
     return (
@@ -34,7 +35,10 @@ function App() {
                     />
                     <Route
                         path={ROUTES.ROUTE_PATH_UserDashboaedPage}
-                        element={<MainDashboard />}
+                        element={
+                            <RequiredAuth>
+                                <MainDashboard />
+                            </RequiredAuth>}
                     />
                 </Route>
             </Routes>
