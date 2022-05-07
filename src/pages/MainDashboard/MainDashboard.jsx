@@ -1,6 +1,6 @@
 import { CreateBoard } from "components";
 import BoardCard from "components/BoardCard/BoardCard";
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import "./MainDashboard.css";
 
 export const MainDashboard = () => {
