@@ -105,7 +105,7 @@ export const SignUpPage = () => {
               </div>
             </div>
 
-            <div>
+            <div className="login-logo">
               <i className="fab fa-google" onClick={LoginWIthGoogleAuth}>
                 Google
               </i>
