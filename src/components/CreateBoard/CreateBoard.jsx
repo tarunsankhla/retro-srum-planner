@@ -12,10 +12,22 @@ const initialBoardObject = {
 	maxVotes: 5,
 	column1: {
 		name: "Good features",
-		feedbacks: [{ textField: "comment 1", likes: 5 }],
+		feedbacks: [
+			{ textField: "comment 1", likes: 5, comments: ["hello", "there"] },
+		],
 	},
-	column2: { name: "Improvements", commentsList: [] },
-	column3: { name: "Add Features", commentsList: [] },
+	column2: {
+		name: "Improvements",
+		feedbacks: [
+			{ textField: "comment 1", likes: 5, comments: ["there", "asdljf"] },
+		],
+	},
+	column3: {
+		name: "Add Features",
+		feedbacks: [
+			{ textField: "comment 1", likes: 5, comments: ["thsdfere", "sjdlfj"] },
+		],
+	},
 };
 
 // const
