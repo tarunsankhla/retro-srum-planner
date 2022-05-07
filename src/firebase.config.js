@@ -1,8 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, GoogleAuthProvider,signInWithPopup } from "firebase/auth";
 import {
-  getFirestore,
   collection,
   addDoc,
   setDoc,
@@ -21,15 +20,18 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
-
+console.log(firebaseConfig, process.env.REACT_APP_FIREBASE_APIKEY);
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 const firebaseAuth = getAuth(app);
+const googleAuthProvider = new GoogleAuthProvider();
 
 export {
   app,
   firestore,
   firebaseAuth,
+  googleAuthProvider,
+  signInWithPopup,
   collection,
   doc,
   addDoc,

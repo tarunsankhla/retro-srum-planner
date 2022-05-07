@@ -4,6 +4,8 @@ import { ROUTES } from "./utils/routes";
 import { Suspense } from "react";
 import Main from "./Main";
 import { Publicboard, HomePage, MainDashboard } from "pages";
+import { LoginPage } from "pages/LoginPage/LoginPage";
+import { SignUpPage } from "pages/SignUpPage/SignUpPage";
 
 function App() {
     return (
@@ -17,6 +19,14 @@ function App() {
                                 <HomePage />
                             </Suspense>
                         }
+                    />
+                    <Route
+                        path={ROUTES.ROUTE_PATH_LoginPage}
+                        element={<LoginPage />}
+                    />
+                    <Route
+                        path={ROUTES.ROUTE_PATH_SignupPage}
+                        element={<SignUpPage />}
                     />
                     <Route
                         path={ROUTES.ROUTE_PATH_PublicDashboardPage}
