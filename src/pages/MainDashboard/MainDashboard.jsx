@@ -1,14 +1,18 @@
 import { CreateBoard } from "components";
 import BoardCard from "components/BoardCard/BoardCard";
-import React, {  useState } from "react";
+import React, { useState } from "react";
+import { useDashboard } from "context/DashboardContext";
 import "./MainDashboard.css";
 
 export const MainDashboard = () => {
   const [isModal, setIsModal] = useState(false);
+  const { dashboard } = useDashboard();
 
   const toggleModal = () => {
     setIsModal((s) => !s);
   };
+
+  console.log(dashboard);
 
   return (
     <div className="dashboard-container">
@@ -16,11 +20,14 @@ export const MainDashboard = () => {
         <div className="dash-create-icon">+</div>
         Add board
       </button>
-      <BoardCard
-        projectName="First Project Name"
-        date="6th May"
-        projectId="fetch_from_database"
-      />
+      {Object.entries(dashboard).map(([key, data]) => (
+        <BoardCard
+          key={key}
+          projectName={data.title}
+          date={data.expiryTime}
+          projectId={data.id}
+        />
+      ))}
       {isModal && <CreateBoard toggle={toggleModal} />}
     </div>
   );
