@@ -29,12 +29,12 @@ export const Publicboard = () => {
 
 	useEffect(() => {
 		getProjectData();
-	}, []);
+	}, [projectId]);
 
 	return (
 		<div className="publicboard-wrapper">
 			<div className=" flex-row-center flex-justify-space-between pd-point8-lr mg-point6-bot">
-				<h1 className="title-lg">Project Title/ Name</h1>
+				<h1 className="title-lg">{project?.title}</h1>
 				<select className="publicboard-sorting">
 					<option>Sort by date</option>
 					<option>Sort by likes</option>
@@ -43,7 +43,7 @@ export const Publicboard = () => {
 			<hr className="break-line" />
 			<div className="publicboard-body">
 				<div className="publicboard-wentwell">
-					<h1 className="publicboard-title">What went well</h1>
+					<h1 className="publicboard-title">{project?.column1?.name}</h1>
 					<NewComment />
 					<div>
 						<CommentCard color="went-well" />
@@ -51,7 +51,7 @@ export const Publicboard = () => {
 					</div>
 				</div>
 				<div className="publicboard-improve">
-					<h1 className="publicboard-title">What to Improve</h1>
+					<h1 className="publicboard-title">{project?.column2?.name}</h1>
 					<NewComment />
 					<div>
 						<CommentCard color="improve" />
@@ -59,7 +59,7 @@ export const Publicboard = () => {
 					</div>
 				</div>
 				<div className="publicboard-actions">
-					<h1 className="publicboard-title">Action Items</h1>
+					<h1 className="publicboard-title">{project?.column3?.name}</h1>
 					<NewComment />
 					<div>
 						<CommentCard color="action" />
