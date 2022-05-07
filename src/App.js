@@ -18,11 +18,11 @@ function App() {
               </Suspense>
             }
           />
+          <Route
+            path={ROUTES.ROUTE_PATH_PublicDashboardPage}
+            element={<Publicboard />}
+          />
         </Route>
-        <Route
-          path={ROUTES.ROUTE_PATH_PublicDashboardPage}
-          element={<Publicboard />}
-        />
       </Routes>
     </div>
   );

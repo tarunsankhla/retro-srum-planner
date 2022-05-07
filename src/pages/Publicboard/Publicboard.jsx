@@ -1,6 +1,6 @@
 import "./Publicboard.css";
-import { NewComment } from "components/common/Cards/NewComment";
-import { CommentCard } from "components/common/Cards/CommentCard";
+import { NewComment } from "components";
+import { CommentCard } from "components";
 
 export const Publicboard = () => {
   return (
