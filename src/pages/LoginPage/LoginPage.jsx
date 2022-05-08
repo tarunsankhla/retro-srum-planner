@@ -17,8 +17,7 @@ export const LoginPage = () => {
     if (data.email.trim() === "" || data.password.trim() === "") {
       alert("Input cannot be blank");
     } else {
-      signInWithEmail(data, userDispatch);
-      navigate("/");
+      signInWithEmail(data, userDispatch, navigate);
     }
   };
 
@@ -81,8 +80,7 @@ export const LoginPage = () => {
               <button
                 className="btn secondary-outline-btn-md google-login"
                 onClick={() => {
-                  LoginWIthGoogleAuth(userDispatch);
-                  navigate("/");
+                  LoginWIthGoogleAuth(userDispatch, navigate);
                 }}
               >
                 <i className="fab fa-google"></i>
