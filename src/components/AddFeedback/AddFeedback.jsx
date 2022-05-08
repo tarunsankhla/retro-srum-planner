@@ -2,6 +2,7 @@ import { firestore } from "firebase.config";
 import { doc, updateDoc } from "firebase/firestore";
 import { v4 as uuid } from "uuid";
 import { useState } from "react";
+import "./addFeedback.css"
 
 export function AddFeedback({ toggleModal, columnName, userId, project }) {
 	const [feedback, setFeedBack] = useState({ text: "", name: columnName });
@@ -50,16 +51,28 @@ export function AddFeedback({ toggleModal, columnName, userId, project }) {
 	};
 
 	return (
-		<article>
-			<div>Column Name: {columnName === "" ? "Column Title" : columnName}</div>
-			<button onClick={toggleModal}>close</button>
-			<input
-				onChange={feedbackInputHandler}
-				name="text"
-				type="text"
-				value={feedback.text}
-			/>
-			<button onClick={updateFeedback}>save</button>
-		</article>
+		<div className="addfeedback-container">
+			<div className="addfeedback-modal">
+				<div className="addfeedback-input-wrapper">
+					<label className="addfeedback-input-label" htmlFor="comments">Column Name: {columnName === "" ? "Column Title" : columnName}</label>
+					<input id="comments"
+					className="addfeedback-input"
+						onChange={feedbackInputHandler}
+						name="text"
+						type="text"
+						value={feedback.text}
+					/>
+				</div>
+				<div className="addfeedback-cta">
+					<button className="btn primary-btn-md" onClick={()=>{
+						updateFeedback();
+						toggleModal()
+					}}>save</button>
+					<button className="btn primary-outline-btn-md" onClick={toggleModal}>close</button>
+					
+				</div>
+			</div>
+		</div>
+		
 	);
 }
