@@ -86,7 +86,6 @@ const getProjectData = async (
       ([key, value]) => value.id === projectId
     );
     project.key = projectKey;
-
     let start = project.createdTime;
     let end = new Date().getTime();
 
