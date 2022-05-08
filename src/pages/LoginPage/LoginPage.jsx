@@ -21,13 +21,11 @@ export const LoginPage = () => {
         data.email,
         data.password
       );
-      console.log("login response", response);
       var token = response.user.accessToken;
       var userid = response.user.uid;
       var email = response.user.email;
       var displayName = response.user.displayName;
       var userpic = response.user.photoURL;
-      console.log(token, userid, email, displayName, userpic);
       userDispatch({
         type: "userauth",
         token: response?.user?.accessToken ?? "",
@@ -73,7 +71,6 @@ export const LoginPage = () => {
   };
 
   const Anonymous = () => {
-    console.log("click");
     AnonymousUser(userDispatch);
   };
 
