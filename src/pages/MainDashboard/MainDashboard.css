@@ -6,6 +6,7 @@
     padding: 40px;
     align-items: flex-start;
     justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .dashboard-create-board{
@@ -16,7 +17,7 @@
     gap: 5px;
     padding: 3rem;
     font-size: 14px;
-    min-width: 15rem;
+    min-width: 14rem;
     cursor: pointer;
     color: gray;
     background-color: transparent;
@@ -34,14 +35,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 36px;
-    width: 55px;
-    height: 55px;
-    padding: 15px;
+    font-size: 2rem;
+    width: 1.6em;
+    height: 1.6em;
     border-radius: 99px;
-    color: darkgray;
+    color: white;
     transition: all 0.3s ease;
-    background-color: lightgray;
+    background-color: #0f96df;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
 }
 
 .dashboard-create-board:hover .dash-create-icon{

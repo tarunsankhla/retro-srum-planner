@@ -40,18 +40,24 @@ const getProjectData = async (
       ([key, value]) => value.id === projectId
     );
     project.key = projectKey;
-    const userId = userState.user.userId;
-    const newDateTime = new Date().getTime();
-    const remainigTime = newDateTime - project.expiryTime * 60 * 1000;
-    console.log(remainigTime);
-    if (remainigTime > project.createdTime) {
-      if (userId !== project.userId) {
+ 
+    let start = project.createdTime;
+    let end = new Date().getTime();
+
+    let diff = end - start;
+    let seconds = Math.floor(diff/ 1000 / 60);
+
+
+    
+    console.log(seconds,project.expiryTime);
+    if (seconds > project.expiryTime) {
+      console.log("projectId",userId,project.userId)
+      if (userState.user.userId !== project.userId) {
         alert("Time expired");
         navigate("/");
       }
-      setProject(project);
-    } else {
     }
+    setProject(project);
     console.log({ project });
   } catch (error) {
     console.log(error);

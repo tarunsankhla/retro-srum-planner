@@ -1,14 +1,15 @@
 import { useAuth } from "context/AuthContext";
 import logo from "data/Logo/logo.svg";
-import { Link } from "react-router-dom";
+import { Link,useNavigate as Navigate } from "react-router-dom";
 import { ROUTES } from "utils/routes";
 import "./Navbar.css";
 
 export const Navbar = () => {
   const { userState, userDispatch } = useAuth();
-
+  const navigate = Navigate();
   const LogoutHandler = () => {
     userDispatch({ type: "reset" });
+    navigate("/");
   };
   return (
     <div className="navbar-wrapper flex-row-center flex-justify-space-between pd-1-all">
