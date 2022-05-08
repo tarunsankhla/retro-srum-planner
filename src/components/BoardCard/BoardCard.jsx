@@ -61,6 +61,18 @@ export default function BoardCard({
         deleteProject(userState.user.userId, projectkey)
         randtoggle(prev => !prev);
     }
+    const getDate = () =>{ 
+        let start = boardData.createdTime;
+        let end = new Date().getTime();
+
+        let diff = end - start;
+        let seconds = Math.floor(diff / 1000 / 60);
+        console.log(seconds, boardData.expiryTime);
+        if (seconds > boardData.expiryTime) { 
+            return `Already Expired`
+        }
+        return `Expiry in ${date}mins`
+    }
     return (
         <div className="board-card">
             <Link to={
@@ -69,8 +81,7 @@ export default function BoardCard({
                 <div className="board-card-body">
                     <h1 className="board-title mg-point6-bot">
                         {projectName}</h1>
-                    <p className="board-date">Expiry in {date}
-                        mins
+                    <p className="board-date">{ getDate()}
                     </p>
                     <p className="board-date">
                         {createdOn}</p>

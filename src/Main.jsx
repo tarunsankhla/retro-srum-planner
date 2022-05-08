@@ -8,7 +8,7 @@ const Main = () => {
     <div>
       <Navbar />
       <Outlet />
-      <ToastContainer style={{fontSize:"1.5em"}} />
+      <ToastContainer style={{fontSize:"1.2em"}} />
     </div>
   );
 };
