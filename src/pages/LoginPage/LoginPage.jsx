@@ -4,18 +4,21 @@ import { useAuth } from "context/AuthContext";
 import "./LoginPage.css";
 import { signInWithEmail, LoginWIthGoogleAuth } from "utils/boardService";
 import { ResetPassword } from "components/UI/Modal/ResetPassword";
+import { Alert } from "utils/alert";
 
 export const LoginPage = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [showResetPassword, setShowResetPassword] = useState(false);
 
   const navigate = Navigate();
-  const { userDispatch } = useAuth();
-
+  const { userState, userDispatch } = useAuth();
+  // if (userState?.user?.emailId) { 
+  //   navigate("/");
+  // }
   const loginClickHandler = (e) => {
     e.preventDefault();
     if (data.email.trim() === "" || data.password.trim() === "") {
-      alert("Input cannot be blank");
+      Alert("error","Input cannot be blank");
     } else {
       signInWithEmail(data, userDispatch, navigate);
     }

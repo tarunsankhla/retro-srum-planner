@@ -5,6 +5,7 @@ import { firestore } from "firebase.config";
 import { doc, setDoc } from "firebase/firestore";
 import { useAuth } from "context/AuthContext";
 import { useDashboard } from "context/DashboardContext";
+import { Alert } from "utils/alert";
 
 const initialBoardObject = {
   title: "",
@@ -76,6 +77,7 @@ export function CreateBoard({ toggle }) {
 
     setUpdateData((update) => !update);
     toggle();
+    Alert("success", "New Dashboard Added!!");
   };
 
   return (

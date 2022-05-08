@@ -7,6 +7,8 @@ import { useNavigate, useParams } from "react-router";
 import { getProjectData } from "utils/boardService";
 import "./CommentCard.css";
 import { v4 as uuid } from "uuid";
+import { BiPin, BiPinFill, PinDark } from "assets/images/images";
+import { Alert } from "utils/alert";
 
 export const CommentCard = ({
   color,
@@ -75,7 +77,7 @@ export const CommentCard = ({
       userState.user.userId !== feedback.userId &&
       userState.user.userId !== userId
     ) {
-      alert("you are not valid to enter");
+      Alert("error", "You dont have access to others feedback");
       return;
     }
 
@@ -105,6 +107,13 @@ export const CommentCard = ({
   };
 
   const editFeedback = (e) => {
+    if (
+      userState.user.userId !== feedback.userId &&
+      userState.user.userId !== userId
+    ) {
+      Alert("error", "You dont have access to others feedback");
+      return;
+    }
     setIsEdit((s) => !s);
   };
 
@@ -157,7 +166,7 @@ export const CommentCard = ({
       userState.user.userId !== commentUserId &&
       userState.user.userId !== userId
     ) {
-      alert("you are not valid uuser to delete");
+      Alert("error", "You dont have access to others comment");
       return;
     }
 
@@ -200,7 +209,7 @@ export const CommentCard = ({
       userState.user.userId !== editComment.userId &&
       userState.user.userId !== userId
     ) {
-      alert("you are not valid to edit comment");
+      Alert("error", "You dont have access to others comment");
 
       setIsCommentEditabe((s) => ({ ...s, commentId: "", commentText: "" }));
       return;
@@ -240,6 +249,46 @@ export const CommentCard = ({
     }, 200);
 
     setIsCommentEditabe((s) => ({ ...s, commentId: "", commentText: "" }));
+  };
+
+  const pinFeedback = (e) => {
+    e.preventDefault();
+    if (
+      userState.user.userId !== feedback.userId &&
+      userState.user.userId !== userId
+    ) {
+      Alert("error", "You dont have access to others feedback");
+
+      setIsCommentEditabe((s) => ({ ...s, commentId: "", commentText: "" }));
+      return;
+    }
+
+    const doctoupdate = doc(firestore, `users/${userId}`);
+
+    let columnUpdate = {
+      ...project[columnName],
+      feedbacks: [
+        ...project[columnName].feedbacks.map((currfeedback) =>
+          currfeedback.id === feedback.id
+            ? { ...currfeedback, isPinned: !currfeedback.isPinned }
+            : currfeedback
+        ),
+      ],
+    };
+
+    let updateObj = {
+      [project.key]: { ...project, [columnName]: columnUpdate },
+    };
+
+    updateDoc(doctoupdate, updateObj)
+      .then((res) => {})
+      .catch((err) => {
+        console.log(err);
+      });
+
+    setTimeout(() => {
+      toggleFlag();
+    }, 200);
   };
 
   useEffect(() => {
@@ -294,6 +343,9 @@ export const CommentCard = ({
             </i>
           </button>
         </div>
+        <i onClick={pinFeedback} className="pin">
+          {feedback.isPinned ? <BiPinFill /> : <BiPin />}
+        </i>
         <i className="fas fa-pen pen-edit" onClick={editFeedback}></i>
       </div>
       <div className={isComment ? "mg-point6-bot" : ""}>

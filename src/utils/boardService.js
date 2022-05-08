@@ -16,6 +16,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { v4 as uuid } from "uuid";
+import { Alert } from "./alert";
 
 function updateBoardData(boarddata, userId, projectId) {
   const doctoupdate = doc(firestore, `users/${userId}`, projectId);
@@ -48,6 +49,7 @@ const signInWithEmail = async (data, userDispatch, navigate) => {
   } catch (err) {
     console.log("login eror", err);
   }
+  Alert("success", "SignIn Successfully!!");
 };
 
 // signin with google
@@ -66,6 +68,7 @@ const LoginWIthGoogleAuth = async (userDispatch, navigate) => {
   } catch (err) {
     console.log("login gauth err", err);
   }
+  Alert("success", "Logged In Successfully!");
 };
 
 const signupWithEmail = async (userDispatch, data, navigate) => {
@@ -86,7 +89,9 @@ const signupWithEmail = async (userDispatch, data, navigate) => {
     navigate("/");
   } catch (err) {
     console.log("sign up err", err);
+    Alert("error", err.message);
   }
+  Alert("success", "SignUp Successfully!!");
 };
 
 // get data
@@ -98,6 +103,7 @@ const getBoardData = async (setData, userId) => {
     console.log(res1.data(), "huva");
   } catch (err) {
     console.log(err);
+    Alert("error", err.message);
   }
 };
 
@@ -126,7 +132,8 @@ const getProjectData = async (
     if (seconds > project.expiryTime) {
       console.log("projectId", userId, project.userId);
       if (userState.user.userId !== project.userId) {
-        alert("Time expired");
+        // alert("Time expired");
+        Alert("error", "Time Expired. Contact owner");
         navigate("/");
       }
     }
@@ -134,6 +141,7 @@ const getProjectData = async (
     console.log({ project });
   } catch (error) {
     console.log(error);
+    Alert("error", error.message);
   }
 };
 
@@ -145,7 +153,10 @@ function deleteProject(userId, projectId) {
     .then((resp) => console.log(resp))
     .catch((err) => {
       console.log(err);
+      Alert("error", err.message);
     });
+
+  Alert("info", "Dashboard Deleted!!");
 }
 
 function cloneProject(boardObj, userId, dashboard) {
@@ -162,6 +173,7 @@ function cloneProject(boardObj, userId, dashboard) {
     });
   } catch (err) {
     console.log(err);
+    Alert("error", err.message);
   }
 }
 function AnonymousUser(userDispatch) {
@@ -182,6 +194,7 @@ function AnonymousUser(userDispatch) {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      Alert("error", error.message);
       // ...
     });
 }
