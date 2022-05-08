@@ -64,7 +64,7 @@ export const Publicboard = () => {
             setColumnName={setColumnName}
           />
           <div>
-            {[
+            {Object.keys(project).length>0 && [
               ...project?.column1?.feedbacks?.filter(
                 (feedback) => feedback.isPinned
               ),
@@ -91,7 +91,7 @@ export const Publicboard = () => {
             setColumnName={setColumnName}
           />
           <div>
-            {[
+            {Object.keys(project).length>0 && [
               ...project?.column2?.feedbacks?.filter(
                 (feedback) => feedback.isPinned
               ),
@@ -118,7 +118,7 @@ export const Publicboard = () => {
             setColumnName={setColumnName}
           />
           <div>
-            {[
+            {Object.keys(project).length>0 && [
               ...project?.column3?.feedbacks?.filter(
                 (feedback) => feedback.isPinned
               ),
