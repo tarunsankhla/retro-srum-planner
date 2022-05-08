@@ -20,19 +20,19 @@ export const SignUpPage = () => {
         data.password
       );
       console.log("sign resp", response);
-      var token = response.user.accessToken;
-      var userid = response.user.uid;
-      var email = response.user.email;
-      var displayName = response.user.displayName;
-      var userpic = response.user.photoURL;
+      var token = response.user.accessToken ?? "";
+      var userid = response.user.uid  ?? "";
+      var email = response.user.email ?? "";
+      var displayName = response.user.displayName ?? "";
+      var userpic = response.user.photoURL ?? "";
       console.log(token, userid, email, displayName, userpic);
       userDispatch({
         type: "userauth",
-        token: response?.user?.accessToken,
-        name: response?.user?.displayName,
-        emailId: response?.user?.email,
-        userId: response?.user?.uid,
-        photo: response.user.photoURL,
+        token: response?.user?.accessToken ?? "",
+        name: response?.user?.displayName ?? "",
+        emailId: response?.user?.email ?? "",
+        userId: response?.user?.uid ?? "",
+        photo: response.user.photoURL ?? "",
       });
     } catch (err) {
       console.log("sign up err", err);
@@ -42,19 +42,19 @@ export const SignUpPage = () => {
   async function LoginWIthGoogleAuth() {
     try {
       const response = await signInWithPopup(firebaseAuth, googleAuthProvider);
-      var token = response.user.accessToken;
-      var userid = response.user.uid;
-      var email = response.user.email;
-      var displayName = response.user.displayName;
-      var userpic = response.user.photoURL;
+      var token = response.user.accessToken ?? "";
+      var userid = response.user.uid ?? "";
+      var email = response.user.email ?? "";
+      var displayName = response.user.displayName ?? "";
+      var userpic = response.user.photoURL ?? "";
       console.log(token, userid, email, displayName, userpic);
       userDispatch({
         type: "userauth",
-        token: response?.user?.accessToken,
-        name: response?.user?.displayName,
-        emailId: response?.user?.email,
-        userId: response?.user?.uid,
-        photo: response.user.photoURL,
+        token: response?.user?.accessToken ?? "",
+        name: response?.user?.displayName ?? "",
+        emailId: response?.user?.email ?? "",
+        userId: response?.user?.uid ?? "",
+        photo: response.user.photoURL ?? "",
       });
       console.log("signup gauth resp", response);
     } catch (err) {
