@@ -92,13 +92,13 @@ const getProjectData = async (
     let diff = end - start;
     let seconds = Math.floor(diff / 1000 / 60);
     console.log(seconds, project.expiryTime);
-    if (seconds > project.expiryTime) {
-      console.log("projectId", userId, project.userId);
-      if (userState.user.userId !== project.userId) {
-        alert("Time expired");
-        navigate("/");
-      }
-    }
+    // if (seconds > project.expiryTime) {
+    //   console.log("projectId", userId, project.userId);
+    //   if (userState.user.userId !== project.userId) {
+    //     alert("Time expired");
+    //     navigate("/");
+    //   }
+    // }
     setProject(project);
     console.log({ project });
   } catch (error) {
