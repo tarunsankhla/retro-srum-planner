@@ -82,6 +82,7 @@ export const LoginPage = () => {
       <div className="login-body-container">
         <div className="login-container">
           <div className="title-header">
+            <h1 className="title-xl-wt-bold mg-1-bot">Login</h1>
             <div className="login-credential-container">
               <input
                 placeholder="Email Address - xyz@gmail.com"
@@ -119,7 +120,7 @@ export const LoginPage = () => {
                   onClick={LoginWIthGoogleAuth}
                 >
                   <i className="fab fa-google"></i>
-                  Login with Google
+                  login with Google
                 </button>
                 <button
                   className="btn primary-outline-btn-md "
