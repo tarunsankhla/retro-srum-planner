@@ -8,6 +8,7 @@ import { getProjectData } from "utils/boardService";
 import "./CommentCard.css";
 import { v4 as uuid } from "uuid";
 import { BiPin, BiPinFill, PinDark } from "assets/images/images";
+import { Alert } from "utils/alert";
 
 export const CommentCard = ({
   color,
@@ -76,7 +77,7 @@ export const CommentCard = ({
       userState.user.userId !== feedback.userId &&
       userState.user.userId !== userId
     ) {
-      alert("You dont have access to others feedback");
+      Alert("error","error","You dont have access to others feedback");
       return;
     }
 
@@ -107,7 +108,7 @@ export const CommentCard = ({
 
   const editFeedback = (e) => {
 	if(userState.user.userId !== feedback.userId && userState.user.userId !== userId){
-		alert("You dont have access to others feedback");
+		Alert("error","error","You dont have access to others feedback");
 		return
 	  }
     setIsEdit((s) => !s);
@@ -162,7 +163,7 @@ export const CommentCard = ({
       userState.user.userId !== commentUserId &&
       userState.user.userId !== userId
     ) {
-      alert("You dont have access to others comment");
+      Alert("error","error","You dont have access to others comment");
       return;
     }
 
@@ -205,7 +206,7 @@ export const CommentCard = ({
       userState.user.userId !== editComment.userId &&
       userState.user.userId !== userId
     ) {
-      alert("You dont have access to others comment");
+      Alert("error","You dont have access to others comment");
 	  
 	setIsCommentEditabe(s=>({...s,commentId:"",commentText:""}))
       return;
@@ -253,7 +254,7 @@ export const CommentCard = ({
       userState.user.userId !== feedback.userId &&
       userState.user.userId !== userId
     ) {
-      alert("You dont have access to others feedback");
+      Alert("error","You dont have access to others feedback");
 	  
 	setIsCommentEditabe(s=>({...s,commentId:"",commentText:""}))
       return;
