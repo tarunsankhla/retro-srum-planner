@@ -1,123 +1,110 @@
 .login-body-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: max;
-	box-shadow: 0 4px 2px rgba(0, 0, 0, 0.02), 0 8px 16px rgba(0, 0, 0, 0.03),
-		0 16px 10px rgba(0, 0, 0, 0.04), 0 26px 18px rgba(0, 0, 0, 0.05);
-	margin: 2rem auto;
-	background-color: #bab3e8;
-    width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+  border: 1px solid rgb(186, 186, 186);
+  border-radius: 15px;
+  width: fit-content;
 }
 
 .login-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	align-items: center;
-	background-color: transparent;
-	width: 50vw;
-	height: fit-content;
-	border-radius: var(--border-radius);
-	font-size: 1.5rem;
-	padding: 2rem 0;
-	gap: 1em;
-	border-radius: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 30rem;
+  height: fit-content;
+  border-radius: var(--border-radius);
+  font-size: 1.5rem;
+  gap: 1em;
+  border-radius: 20px;
 }
 
-.login-credential-container {
-	max-width: 90%;
-}
 .login-credential-container > input {
-	width: 100%;
-	padding: 1em;
-	margin: 1em;
-	border-radius: 0.5em;
-	border: 2px solid transparent !important;
-	outline: none;
-	background-color: white !important;
+  width: 100%;
+  padding: 0.6rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+  border: 1px solid gray !important;
+  outline: none;
+  background-color: white !important;
 }
 
 .login-credential-container > label {
-	font-weight: 500;
+  font-weight: 500;
 }
 
 .login-rem-forgetpass-container {
-	display: flex;
-	justify-content: space-between;
-	/* width: 70%; */
-	font-size: 0.7em;
-	gap: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .login-action-btn {
-	display: block;
-	font-size: 1.5rem;
-	border: 0;
-	padding: 5px 1rem;
-	border-radius: 5px;
-	background-color: #0f96df;
+  display: block;
+  font-size: 1.5rem;
+  border: 0;
+  padding: 5px 1rem;
+  border-radius: 5px;
+  background-color: #a0d3ef;
 }
 
 .login-btn-container {
-	padding: 1em;
+  padding: 1em;
 }
 
 .title-header {
-	font-size: 3rem;
-	font-weight: 700;
-	width: 100%;
-	padding: 1em;
+  font-size: 3rem;
+  font-weight: 700;
+  width: 90%;
+  padding: 2rem;
 }
 
 .login-footer {
-	display: flex;
-	align-items: center;
-	text-decoration: none;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  justify-content: center;
 }
 
 .login-footer {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .animation-login-1 {
-	border: none;
+  border: none;
 }
 
-.login-logo {
-	max-width: max-content;
-	height: 50px;
-	padding: 5px 1rem;
-	border: 2px solid rgb(255, 108, 71);
-	border-radius: 5px;
-	color: rgb(38, 38, 38);
-}
-
-.login-logo i{
-	color: rgb(255, 108, 71);;
-
+.login-logo i {
+  margin-right: 5px;
 }
 
 .error {
-	color: red;
-	font-weight: 500;
+  color: red;
+  font-weight: 500;
 }
 
 .btn-link {
-	margin: auto;
-	border: 1px solid transparent;
+  margin: auto;
+  border: 1px solid transparent;
 }
 
 button:disabled {
-	cursor: not-allowed;
+  cursor: not-allowed;
 }
 
-@media screen and (max-width: 800px) {
-	.login-container {
-		width: 100vw;
-	}
-	.login-logo {
-		display: none;
-	}
+.login-cta-buttons {
+  display: grid;
+
+  margin: 1.5rem 0 0.6rem;
+}
+
+.login-cta-buttons button {
+  margin: 10px 0;
+}
+
+.login-cta-buttons > div button {
+  width: 49%;
 }
