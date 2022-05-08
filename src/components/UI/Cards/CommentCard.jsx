@@ -1,7 +1,8 @@
+import { useAuth } from "context/AuthContext";
 import { firestore } from "firebase.config";
 import { doc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { getProjectData } from "utils/boardService";
 import "./CommentCard.css";
 
@@ -13,6 +14,8 @@ export const CommentCard = ({
 	setProject,
 }) => {
 	console.log(feedback, "feedback");
+	const { userState } = useAuth();
+	const navigate = useNavigate();
 
 	const { userId } = useParams();
 
@@ -54,7 +57,7 @@ export const CommentCard = ({
 	};
 
 	useEffect(() => {
-		getProjectData(setProject, userId, project.id);
+		getProjectData(setProject, userId, project.id, userState, navigate);
 	}, [flag]);
 
 	return (

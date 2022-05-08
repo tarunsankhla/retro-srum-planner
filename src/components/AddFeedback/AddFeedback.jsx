@@ -4,6 +4,8 @@ import { v4 as uuid } from "uuid";
 import { useState, useEffect } from "react";
 import { getProjectData } from "utils/boardService";
 import "./addFeedback.css";
+import { useAuth } from "context/AuthContext";
+import { useNavigate } from "react-router";
 
 export function AddFeedback({
 	toggleModal,
@@ -13,6 +15,8 @@ export function AddFeedback({
 	setProject,
 }) {
 	const [feedback, setFeedBack] = useState({ text: "", name: columnName });
+	const { userState } = useAuth();
+	const navigate = useNavigate();
 
 	const columnNumber = () => {
 		if (project.column1.name === columnName) {
@@ -56,7 +60,7 @@ export function AddFeedback({
 	};
 
 	useEffect(() => {
-		getProjectData(setProject, userId, project.id);
+		getProjectData(setProject, userId, project.id, userState, navigate);
 	}, [project.id]);
 
 	return (
