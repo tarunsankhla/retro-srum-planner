@@ -30,11 +30,11 @@ export const LoginPage = () => {
       console.log(token, userid, email, displayName, userpic);
       userDispatch({
         type: "userauth",
-        token: response?.user?.accessToken,
-        name: response?.user?.displayName,
-        emailId: response?.user?.email,
-        userId: response?.user?.uid,
-        photo: response.user.photoURL,
+        token: response?.user?.accessToken ?? "",
+        name: response?.user?.displayName ?? "",
+        emailId: response?.user?.email ?? "",
+        userId: response?.user?.uid ?? "",
+        photo: response.user.photoURL ?? "",
       });
     } catch (err) {
       console.log("login eror", err);
@@ -54,11 +54,11 @@ export const LoginPage = () => {
       console.log(token, userid, email, displayName, userpic);
       userDispatch({
         type: "userauth",
-        token: response?.user?.accessToken,
-        name: response?.user?.displayName,
-        emailId: response?.user?.email,
-        userId: response?.user?.uid,
-        photo: response.user.photoURL,
+        token: response?.user?.accessToken ?? "",
+        name: response?.user?.displayName ?? "",
+        emailId: response?.user?.email ?? "",
+        userId: response?.user?.uid ?? "",
+        photo: response.user.photoURL ?? "",
       });
     } catch (err) {
       console.log("login gauth err", err);
@@ -76,6 +76,7 @@ export const LoginPage = () => {
     console.log("click");
     AnonymousUser(userDispatch);
   };
+
   return (
     <>
       <div className="login-body-container">

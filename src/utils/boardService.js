@@ -60,11 +60,11 @@ function AnonymousUser(userDispatch) {
       // Signed in..
       userDispatch({
         type: "userauth",
-        token: response?.user?.accessToken,
+        token: response?.user?.accessToken ?? "",
         name: "Anonymous",
-        emailId: response?.user?.email,
-        userId: response?.user?.uid,
-        photo: response.user.photoURL,
+        emailId: response?.user?.email ?? "",
+        userId: response?.user?.uid ?? "",
+        photo: response.user.photoURL ?? "",
       });
     })
     .catch((error) => {
