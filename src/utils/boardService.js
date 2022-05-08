@@ -157,7 +157,7 @@ function deleteProject(userId, projectId) {
 			Alert("error", err.message);
 		});
 
-	Alert("info", "Dashboard Deleted!!");
+	Alert("info", "Project Deleted!!");
 }
 
 function cloneProject(boardObj, userId, dashboard) {
