@@ -6,6 +6,7 @@
   flex-direction: column;
   margin: 8px;
   position: relative;
+  overflow-wrap: break-word;
 }
 
 .comment-card-wrapper .trash {
