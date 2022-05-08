@@ -280,74 +280,101 @@ export const CommentCard = ({
       )}
 
       <div className="comment-card-buttons">
-        {feedback.likes}
-        <i onClick={updateLikes} className="far fa-thumbs-up thumb"></i>
-        {feedback.comments.length}
-        <i onClick={toggleComment} className="far fa-comment comment"></i>
+        <div className="badge-container" onClick={updateLikes}>
+          <button className="btn badge-icon-btn-lg">
+            <i className="far fa-thumbs-up thumb">
+              <span className="badge-on-icon">{feedback.likes}</span>
+            </i>
+          </button>
+        </div>
+        <div className="badge-container" onClick={toggleComment}>
+          <button className="btn badge-icon-btn-lg">
+            <i className="far fa-comment comment">
+              <span className="badge-on-icon">{feedback.comments.length}</span>
+            </i>
+          </button>
+        </div>
         <i className="fas fa-pen pen-edit" onClick={editFeedback}></i>
       </div>
-
-      {isComment &&
-        feedback.comments.map((comment) => {
-          return isCommentEditable.commentId !== comment.id ? (
-            <div key={comment.id}>
-              {comment.text}
-              <button
-                onClick={() =>
-                  setIsCommentEditabe({
-                    commentId: comment.id,
-                    commentText: comment.text,
-                  })
-                }
+      <div className={isComment ? "mg-point6-bot" : ""}>
+        {isComment && feedback.comments.length > 0 && (
+          <>
+            <p className="comments-title">Comments :</p>
+            <hr className="break-line" />
+          </>
+        )}
+        {isComment &&
+          feedback.comments.map((comment) => {
+            return isCommentEditable.commentId !== comment.id ? (
+              <>
+                <div key={comment.id} className="comment-text-field">
+                  <p className="p-md comment-text pd-point6-lr">
+                    {comment.text}
+                  </p>
+                  <div className="comment-edit-icons">
+                    <button
+                      onClick={() =>
+                        setIsCommentEditabe({
+                          commentId: comment.id,
+                          commentText: comment.text,
+                        })
+                      }
+                      className="btn icon-btn-xsm pen-icon"
+                    >
+                      <i className="fas fa-pen"></i>
+                    </button>
+                    <button
+                      className="btn icon-btn-xsm trash-icon"
+                      onClick={() => deleteComment(comment.id, comment.userId)}
+                    >
+                      <i class="far fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <form
+                onSubmit={(e) => editComment(comment, e)}
+                className="comment-card-comments"
               >
-                edit
-              </button>
-              <button onClick={() => deleteComment(comment.id, comment.userId)}>
-                delete
-              </button>
-            </div>
-          ) : (
-            <form
-              onSubmit={(e) => editComment(comment, e)}
-              className="comment-card-comments"
-            >
-              <textarea
-                className="comment-textarea"
-                type="text"
-                name="text"
-                placeholder="comments"
-                value={isCommentEditable.commentText}
-                onChange={(e) =>
-                  setIsCommentEditabe((prevObj) => ({
-                    ...prevObj,
-                    commentText: e.target.value,
-                  }))
-                }
-              />
-              <div className="comment-cta-buttons">
-                <button
-                  onClick={() =>
-                    setIsCommentEditabe((s) => ({
-                      ...s,
-                      commentId: "",
-                      commentText: "",
+                <textarea
+                  className="comment-textarea"
+                  type="text"
+                  name="text"
+                  placeholder="comments"
+                  value={isCommentEditable.commentText}
+                  onChange={(e) =>
+                    setIsCommentEditabe((prevObj) => ({
+                      ...prevObj,
+                      commentText: e.target.value,
                     }))
                   }
-                  className="btn secondary-outline-btn-sm"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="btn primary-btn-sm"
-                  onClick={(e) => editComment(comment, e)}
-                >
-                  Post
-                </button>
-              </div>
-            </form>
-          );
-        })}
+                />
+                <div className="edit-comment-cta-buttons">
+                  <button
+                    onClick={() =>
+                      setIsCommentEditabe((s) => ({
+                        ...s,
+                        commentId: "",
+                        commentText: "",
+                      }))
+                    }
+                    className="btn secondary-text-btn-xsm edit-close"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="btn primary-text-btn-xsm edit-pen-icon"
+                    onClick={(e) => editComment(comment, e)}
+                  >
+                    Done
+                  </button>
+                </div>
+              </form>
+            );
+          })}
+      </div>
       {isEdit && (
         <AddFeedback
           toggleModal={toggleEdit}
