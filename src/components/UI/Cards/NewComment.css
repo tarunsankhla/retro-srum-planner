@@ -15,3 +15,9 @@
   margin: 0 1rem;
   border-radius: 50%;
 }
+
+.new-comment-wrapper:hover {
+  background-color: rgba(32, 32, 32, 0.057);
+  color: var(--primary-color);
+  transition: 200ms ease;
+}
