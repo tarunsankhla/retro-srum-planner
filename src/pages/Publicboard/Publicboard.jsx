@@ -1,15 +1,15 @@
 import "./Publicboard.css";
 import { NewComment, AddFeedback } from "components";
 import { CommentCard } from "components";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { ROUTES } from "utils/routes";
 import { AnonymousUser } from "utils/boardService";
 import { useAuth } from "context/AuthContext";
 import { getProjectData } from "utils/boardService";
 
 export const Publicboard = () => {
   const { userId, projectId } = useParams();
+  const navigate = useNavigate();
   console.log(
     {
       userId,
@@ -17,7 +17,7 @@ export const Publicboard = () => {
     },
     useParams()
   );
-  const { userDispatch } = useAuth();
+  const { userState, userDispatch } = useAuth();
   const [project, setProject] = useState({});
 
   console.log({ userId, projectId }, useParams());
@@ -29,17 +29,20 @@ export const Publicboard = () => {
   };
 
   useEffect(() => {
-    if (!!localStorage.getItem(ROUTES.VAR_ENCODE_TOKEN)) {
-      var user = localStorage.getItem(ROUTES.VAR_ENCODE_TOKEN)?.user?.emailId;
-      if (!user) {
+    if (userState.token) {
+      if (!userState.user.emailId) {
         AnonymousUser(userDispatch);
+      } else {
+        return;
       }
+    } else {
+      AnonymousUser(userDispatch);
     }
   }, []);
 
   useEffect(() => {
     // getProjectData();
-    getProjectData(setProject, userId, projectId);
+    getProjectData(setProject, userId, projectId, userState, navigate);
   }, [projectId]);
 
   return (

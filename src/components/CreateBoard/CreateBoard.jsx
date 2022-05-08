@@ -9,6 +9,7 @@ import { useDashboard } from "context/DashboardContext";
 const initialBoardObject = {
   title: "",
   date: new Date(),
+  createdTime: new Date().getTime(),
   maxVotes: 5,
   column1: {
     name: "Good features",
@@ -55,11 +56,11 @@ export function CreateBoard({ toggle }) {
   };
 
   const addBoard = async () => {
-    boardObject.expiryTime = 30;
+    boardObject.expiryTime = 1;
     boardObject.userId = userState.user.userId;
     boardObject.id = uuid();
-    // const collectionReference = collection(firestore, `users/`);
     const userRef = doc(firestore, `users/${userState.user.userId}`);
+
     try {
       const response = await setDoc(userRef, {
         ...dashboard,
