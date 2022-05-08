@@ -49,11 +49,6 @@ export function AddFeedback({
     }else{
       setError("")
     }
-
-    console.log("isFlag ",isEdit)
-    console.log("userid from auth ",userState.user.userId)
-    console.log("feedback user id ",feedbackObj.userId)
-    console.log("UserId from props",userId)
     
     if(userState.user.userId !== feedbackObj.userId && isEdit && userState.user.userId !== userId){
       alert("you are not valid to enter");
