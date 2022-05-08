@@ -13,15 +13,15 @@ const initialBoardObject = {
   maxVotes: 5,
   column1: {
     name: "Good features",
-    feedbacks: [{ textField: "", likes: 5, comments: [] }],
+    feedbacks: [],
   },
   column2: {
     name: "Improvements",
-    feedbacks: [{ textField: "", likes: 5, comments: [] }],
+    feedbacks: [],
   },
   column3: {
     name: "Add Features",
-    feedbacks: [{ textField: "", likes: 5, comments: [] }],
+    feedbacks: [],
   },
 };
 
@@ -59,6 +59,7 @@ export function CreateBoard({ toggle }) {
     boardObject.expiryTime = 1;
     boardObject.userId = userState.user.userId;
     boardObject.id = uuid();
+    boardObject.createdTime = new Date().getTime();
     const userRef = doc(firestore, `users/${userState.user.userId}`);
 
     try {

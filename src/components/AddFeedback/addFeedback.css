@@ -62,3 +62,8 @@
     display: flex;
     
 }
+
+.error-text{
+    color: red;
+    margin-top: 5px ;
+}

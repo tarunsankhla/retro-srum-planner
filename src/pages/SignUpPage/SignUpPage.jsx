@@ -1,6 +1,6 @@
 import { Login } from "assets/images/images";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate as Navigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { firebaseAuth, googleAuthProvider } from "firebase.config";
 import { LoginWIthGoogleAuth } from "utils/boardService";
@@ -12,6 +12,7 @@ import { async } from "@firebase/util";
 export const SignUpPage = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const { userState, userDispatch } = useAuth();
+  const navigate = Navigate();
 
   const onSubmitHandler = async () => {
     try {
@@ -28,6 +29,7 @@ export const SignUpPage = () => {
         userId: response?.user?.uid ?? "",
         photo: response.user.photoURL ?? "",
       });
+      navigate("/");
     } catch (err) {
       console.log("sign up err", err);
     }

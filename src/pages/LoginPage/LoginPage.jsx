@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate as Navigate } from "react-router-dom";
 import { useAuth } from "context/AuthContext";
 import "./LoginPage.css";
 import { signInWithEmail, LoginWIthGoogleAuth } from "utils/boardService";
@@ -9,6 +9,7 @@ export const LoginPage = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [showResetPassword, setShowResetPassword] = useState(false);
 
+  const navigate = Navigate();
   const { userDispatch } = useAuth();
 
   const loginClickHandler = (e) => {
@@ -17,6 +18,7 @@ export const LoginPage = () => {
       alert("Input cannot be blank");
     } else {
       signInWithEmail(data, userDispatch);
+      navigate("/");
     }
   };
 
@@ -78,7 +80,10 @@ export const LoginPage = () => {
             <div className="google-login-container">
               <button
                 className="btn secondary-outline-btn-md google-login"
-                onClick={() => LoginWIthGoogleAuth(userDispatch)}
+                onClick={() => {
+                  LoginWIthGoogleAuth(userDispatch);
+                  navigate("/");
+                }}
               >
                 <i className="fab fa-google"></i>
                 login with Google
