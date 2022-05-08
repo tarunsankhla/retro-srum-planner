@@ -18,6 +18,7 @@ export function AddFeedback({
 }) {
   const initialFeedback = { text: feedbackObj.textField, name: columnName };
   const [feedback, setFeedBack] = useState(initialFeedback);
+  const [error,setError] = useState("")
   const { userState } = useAuth();
   const navigate = useNavigate();
 
@@ -41,6 +42,14 @@ export function AddFeedback({
 
   const updateFeedback = (e) => {
     e.preventDefault();
+
+    if(feedback.text.trim() === ""){
+      setError("Please enter some comment");
+      return 
+    }else{
+      setError("")
+    }
+
     const columnNo = columnNumber();
 
     const doctoupdate = doc(firestore, `users/${userId}`);
@@ -68,6 +77,8 @@ export function AddFeedback({
       .catch((err) => {
         console.log(err);
       });
+      
+      toggleModal();
   };
 
   useEffect(() => {
@@ -95,13 +106,13 @@ export function AddFeedback({
             type="text"
             value={feedback.text}
           />
+          {error && <span className="error-text">{error}</span>}
         </div>
         <div className="addfeedback-cta">
           <button
             className="btn primary-btn-md"
             onClick={(e) => {
               updateFeedback(e);
-              toggleModal();
             }}
           >
             save
