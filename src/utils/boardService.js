@@ -5,10 +5,17 @@ import {
   signInWithPopup,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   googleAuthProvider,
 } from "firebase.config";
-import { doc, getDoc, updateDoc, deleteField, setDoc } from "firebase/firestore";
-import {v4 as uuid} from "uuid";
+import {
+  doc,
+  getDoc,
+  updateDoc,
+  deleteField,
+  setDoc,
+} from "firebase/firestore";
+import { v4 as uuid } from "uuid";
 
 function updateBoardData(boarddata, userId, projectId) {
   const doctoupdate = doc(firestore, `users/${userId}`, projectId);
@@ -22,7 +29,7 @@ function updateBoardData(boarddata, userId, projectId) {
 }
 
 // signin with email password
-const signInWithEmail = async (data, userDispatch) => {
+const signInWithEmail = async (data, userDispatch, navigate) => {
   try {
     const response = await signInWithEmailAndPassword(
       firebaseAuth,
@@ -37,13 +44,14 @@ const signInWithEmail = async (data, userDispatch) => {
       userId: response?.user?.uid ?? "",
       photo: response.user.photoURL ?? "",
     });
+    navigate("/dashboard");
   } catch (err) {
     console.log("login eror", err);
   }
 };
 
 // signin with google
-const LoginWIthGoogleAuth = async (userDispatch) => {
+const LoginWIthGoogleAuth = async (userDispatch, navigate) => {
   try {
     const response = await signInWithPopup(firebaseAuth, googleAuthProvider);
     userDispatch({
@@ -54,8 +62,30 @@ const LoginWIthGoogleAuth = async (userDispatch) => {
       userId: response?.user?.uid ?? "",
       photo: response.user.photoURL ?? "",
     });
+    navigate("/dashboard");
   } catch (err) {
     console.log("login gauth err", err);
+  }
+};
+
+const signupWithEmail = async (userDispatch, data, navigate) => {
+  try {
+    const response = await createUserWithEmailAndPassword(
+      firebaseAuth,
+      data.email,
+      data.password
+    );
+    userDispatch({
+      type: "userauth",
+      token: response?.user?.accessToken ?? "",
+      name: response?.user?.displayName ?? "",
+      emailId: response?.user?.email ?? "",
+      userId: response?.user?.uid ?? "",
+      photo: response.user.photoURL ?? "",
+    });
+    navigate("/");
+  } catch (err) {
+    console.log("sign up err", err);
   }
 };
 
@@ -118,23 +148,20 @@ function deleteProject(userId, projectId) {
     });
 }
 
-
-function cloneProject(boardObj,userId,dashboard) { 
+function cloneProject(boardObj, userId, dashboard) {
   boardObj.userId = userId;
   boardObj.id = uuid();
   boardObj.createdTime = new Date().getTime();
   boardObj.createdOn = new Date().toDateString();
-  const userRef = doc(firestore, `users/${
-      userId
-  }`);
-  console.log(boardObj)
+  const userRef = doc(firestore, `users/${userId}`);
+  console.log(boardObj);
   try {
-      setDoc(userRef, {
-          ...dashboard,
-          [uuid()]: boardObj
-      });
+    setDoc(userRef, {
+      ...dashboard,
+      [uuid()]: boardObj,
+    });
   } catch (err) {
-      console.log(err);
+    console.log(err);
   }
 }
 function AnonymousUser(userDispatch) {
@@ -177,4 +204,5 @@ export {
   resetPassword,
   signInWithEmail,
   LoginWIthGoogleAuth,
+  signupWithEmail,
 };
