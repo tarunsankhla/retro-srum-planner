@@ -7,6 +7,7 @@
   background-color: rgba(0,0,0,0.05);
   min-width: 14rem;
   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
+  position: relative;
 }
 
 .board-card-body {
@@ -14,6 +15,7 @@
   flex-direction: column;
   align-items: flex-start;
   cursor: pointer;
+  gap:7px;
 }
 
 .board-title {
@@ -49,7 +51,7 @@
 .board-card-cta {
   display: flex;
   gap: 0.6rem;
-  position: relative;
+  /* position: relative; */
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -85,4 +87,12 @@
 .board-card hr {
   width: 100%;
   margin: 5.5px 0;
+}
+
+
+.abslt-btn{
+  position: absolute;
+  top :2px;
+  right: 2px;
+
 }

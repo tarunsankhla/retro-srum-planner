@@ -25,13 +25,15 @@
   padding-left: 4px;
 }
 
-.comment-card-comments {
+.comment-card-comments,
+.edit-comment-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   position: relative;
 }
 
+.edit-comment-textarea,
 .comment-textarea {
   resize: none;
   border-radius: 4px;
@@ -40,6 +42,10 @@
   margin: 5px 0 0;
   font-size: 0.9rem;
   width: 100%;
+}
+
+.edit-comment-textarea {
+  height: 100%;
 }
 
 .comment-cta-buttons {
@@ -58,23 +64,34 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-bottom: 6px;
 }
 
 .thumb,
 .comment,
 .pen-edit,
 .trash,
-.pin {
+.pen-icon,
+.trash-icon,
+.close-icon,
+.edit-close-icon {
   padding: 10px;
   font-size: 0.9rem;
   margin-left: 5px;
   cursor: pointer;
 }
 
-.pen-edit {
+.pen-edit,
+.close-icon,
+.edit-close-icon {
   font-size: 0.8rem;
   margin-left: 8px;
+}
+
+.pen-icon,
+.trash-icon {
+  font-size: 0.8rem;
+  padding: 6px;
+  margin: 3px;
 }
 
 .thumb:hover,
@@ -85,13 +102,68 @@
   color: var(--primary-color);
 }
 
+.badge-container {
+  padding: 0;
+}
+
+.badge-container button {
+  margin: 2px;
+}
+
+.badge-on-icon {
+  top: 0;
+  right: 0;
+  padding: 5px;
+  background: transparent;
+  color: black;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
 .comment {
   padding-right: 5px;
 }
 
-.pin{
+.comment-text-field {
   display: flex;
-  padding-right: 4px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 2px 0;
+  padding: 3px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.451);
+}
+
+.comments-title {
+  font-size: 0.8rem;
+  text-align: left;
+  margin: 8px 0 8px;
+}
+
+.comment-text {
+  width: 95%;
+  text-align: left;
+}
+
+.comment-edit-icons {
+  width: 4.5rem;
+}
+
+.edit-comment-cta-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.edit-comment-cta-buttons i,
+.comment-edit-icons i {
+  font-size: 0.75rem;
+}
+
+.edit-comment-cta-buttons .fa-times {
+  font-size: 0.9rem;
 }
 
 .went-well {
@@ -104,4 +176,12 @@
 
 .action {
   background-color: rgb(199, 207, 255);
+}
+
+.pin{padding: 10px;
+  font-size: 0.9rem;
+  margin-left: 5px;
+  cursor: pointer;
+  display: flex;
+  padding-right: 4px;
 }
