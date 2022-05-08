@@ -9,6 +9,7 @@ import {
 } from "firebase.config";
 import { doc, getDoc, updateDoc, deleteField, setDoc } from "firebase/firestore";
 import {v4 as uuid} from "uuid";
+import { Alert } from "./alert";
 
 function updateBoardData(boarddata, userId, projectId) {
   const doctoupdate = doc(firestore, `users/${userId}`, projectId);
@@ -97,6 +98,7 @@ const getProjectData = async (
       console.log("projectId", userId, project.userId);
       if (userState.user.userId !== project.userId) {
         alert("Time expired");
+        Alert("error", "Time Expired. Contact owner");
         navigate("/");
       }
     }
