@@ -10,13 +10,6 @@ import { getProjectData } from "utils/boardService";
 export const Publicboard = () => {
 	const { userId, projectId } = useParams();
 	const navigate = useNavigate();
-	console.log(
-		{
-			userId,
-			projectId,
-		},
-		useParams()
-	);
 	const { userState, userDispatch } = useAuth();
 	const [project, setProject] = useState({});
 
@@ -79,6 +72,7 @@ export const Publicboard = () => {
 								feedback={feedback}
 								columnName={"column1"}
 								color="went-well"
+
 							/>
 						))}
 					</div>
