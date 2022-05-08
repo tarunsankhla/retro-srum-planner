@@ -61,6 +61,12 @@ export const CommentCard = ({
 
 	const deleteComment = (e)=>{
 		e.preventDefault();
+		
+		if(userState.user.userId !== feedback.userId && userState.user.userId !== userId){
+			alert("you are not valid to enter");
+			return
+		  }
+
 		const doctoupdate = doc(firestore, `users/${userId}`);
 		let columnUpdate = {
 			...project[columnName],
