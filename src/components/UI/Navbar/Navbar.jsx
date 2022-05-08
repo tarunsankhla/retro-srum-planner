@@ -19,13 +19,12 @@ export const Navbar = () => {
       </Link>
 
       <div className="navbar-auth-section flex-row-center">
-        <div className="publicboard-searchbar">
-          <input type="search" placeholder="Search" />
-        </div>
         {!userState.token ? (
-          <button className="btn primary-btn-md" onClick={() => {}}>
-            <Link to={ROUTES.ROUTE_PATH_LoginPage}>Login</Link>
-          </button>
+          <Link to={ROUTES.ROUTE_PATH_LoginPage}>
+            <button className="btn primary-btn-md" onClick={() => {}}>
+              Login
+            </button>
+          </Link>
         ) : (
           <button
             className="btn primary-outline-btn-md"
