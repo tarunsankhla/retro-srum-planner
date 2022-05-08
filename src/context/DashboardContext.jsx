@@ -15,6 +15,7 @@ const DashboardProvider = ({ children }) => {
 		try {
 			const res1 = await getDoc(userRef);
 			setDashboard(res1.data() ?? {});
+      console.log(res1.data(), "huva")
 		} catch (err) {
 			console.log(err);
 		}
