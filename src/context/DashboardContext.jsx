@@ -1,40 +1,41 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useAuth } from "./AuthContext";
-import { firestore, collection } from "firebase.config";
-import { addDoc, doc, getDoc, setDoc } from "firebase/firestore";
+// import { firestore, collection } from "firebase.config";
+// import { addDoc, doc, getDoc, setDoc } from "firebase/firestore";
+import { getBoardData } from "utils/boardService";
 
 const DashboardContext = createContext([]);
 
 const DashboardProvider = ({ children }) => {
-	const [dashboard, setDashboard] = useState({});
-	const { userState } = useAuth();
-	const [updateData, setUpdateData] = useState(true);
+  const [dashboard, setDashboard] = useState({});
+  const {
+    userState: { user },
+  } = useAuth();
+  const [updateData, setUpdateData] = useState(true);
 
-	const getData = async () => {
-		const userRef = doc(firestore, `users/${userState.user.userId}`);
-		try {
-			const res1 = await getDoc(userRef);
-			setDashboard(res1.data() ?? {});
-      console.log(res1.data(), "huva")
-		} catch (err) {
-			console.log(err);
-		}
-	};
+  // const getData = async () => {
+  //   const userRef = doc(firestore, `users/${userState.user.userId}`);
+  //   try {
+  //     const res1 = await getDoc(userRef);
+  //     setDashboard(res1.data() ?? {});
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
-	console.log(dashboard);
-	console.log(updateData);
 
-	useEffect(() => {
-		getData();
-	}, [updateData]);
+  // to update board data after every new addition
+  useEffect(() => {
+    getBoardData(setDashboard, user.userId);
+  }, [updateData]);
 
-	return (
-		<DashboardContext.Provider
-			value={{ dashboard, setDashboard, setUpdateData }}
-		>
-			{children}
-		</DashboardContext.Provider>
-	);
+  return (
+    <DashboardContext.Provider
+      value={{ dashboard, setDashboard, setUpdateData }}
+    >
+      {children}
+    </DashboardContext.Provider>
+  );
 };
 
 const useDashboard = () => useContext(DashboardContext);
