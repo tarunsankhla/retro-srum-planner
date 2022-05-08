@@ -97,7 +97,8 @@
 .thumb:hover,
 .comment:hover,
 .pen-edit:hover,
-.trash:hover {
+.trash:hover,
+.pin:hover {
   color: var(--primary-color);
 }
 
@@ -175,4 +176,12 @@
 
 .action {
   background-color: rgb(199, 207, 255);
+}
+
+.pin{padding: 10px;
+  font-size: 0.9rem;
+  margin-left: 5px;
+  cursor: pointer;
+  display: flex;
+  padding-right: 4px;
 }
