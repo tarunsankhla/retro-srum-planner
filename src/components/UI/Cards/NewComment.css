@@ -7,6 +7,7 @@
   margin: 8px;
   height: 3rem;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .new-comment-wrapper i {
