@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./createboard.css";
 import { v4 as uuid } from "uuid";
-import { firestore, collection } from "firebase.config";
-import { addDoc, doc, getDoc, setDoc } from "firebase/firestore";
+import { firestore } from "firebase.config";
+import { doc, setDoc } from "firebase/firestore";
 import { useAuth } from "context/AuthContext";
 import { useDashboard } from "context/DashboardContext";
 
@@ -12,21 +12,15 @@ const initialBoardObject = {
   maxVotes: 5,
   column1: {
     name: "Good features",
-    feedbacks: [
-      { textField: "comment 1", likes: 5, comments: ["hello", "there"] },
-    ],
+    feedbacks: [{ textField: "", likes: 5, comments: [] }],
   },
   column2: {
     name: "Improvements",
-    feedbacks: [
-      { textField: "comment 1", likes: 5, comments: ["there", "asdljf"] },
-    ],
+    feedbacks: [{ textField: "", likes: 5, comments: [] }],
   },
   column3: {
     name: "Add Features",
-    feedbacks: [
-      { textField: "comment 1", likes: 5, comments: ["thsdfere", "sjdlfj"] },
-    ],
+    feedbacks: [{ textField: "", likes: 5, comments: [] }],
   },
 };
 
