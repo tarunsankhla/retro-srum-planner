@@ -32,8 +32,8 @@ export function AddFeedback({
     }));
   };
 
-  const updateFeedback = () => {
-    // console.log(feedback);
+  const updateFeedback = (e) => {
+    e.preventDefault();
     const columnNo = columnNumber();
 
     const doctoupdate = doc(firestore, `users/${userId}`);
@@ -62,7 +62,13 @@ export function AddFeedback({
 
   return (
     <div className="addfeedback-container">
-      <div className="addfeedback-modal">
+      <form
+        onSubmit={(e) => {
+          updateFeedback(e);
+          toggleModal();
+        }}
+        className="addfeedback-modal"
+      >
         <div className="addfeedback-input-wrapper">
           <label className="addfeedback-input-label" htmlFor="comments">
             Column Name: {columnName === "" ? "Column Title" : columnName}
@@ -79,8 +85,8 @@ export function AddFeedback({
         <div className="addfeedback-cta">
           <button
             className="btn primary-btn-md"
-            onClick={() => {
-              updateFeedback();
+            onClick={(e) => {
+              updateFeedback(e);
               toggleModal();
             }}
           >
@@ -90,7 +96,7 @@ export function AddFeedback({
             close
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
