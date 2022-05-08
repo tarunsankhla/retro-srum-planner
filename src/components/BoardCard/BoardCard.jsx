@@ -7,9 +7,10 @@ import {deleteField, doc, setDoc, updateDoc} from "firebase/firestore";
 import "./board-card.css";
 import {useAuth} from "context/AuthContext";
 import {useDashboard} from "context/DashboardContext";
+import {cloneProject, deleteProject} from "utils/boardService";
 
 export default function BoardCard({
-  Projectkey,
+    Projectkey,
     projectName,
     date,
     createdOn,
@@ -39,41 +40,26 @@ export default function BoardCard({
         }, 2000);
     };
 
-    const cloneClickHandler = async () => {
+    const cloneClickHandler = () => {
         console.log(boardData);
         let boardObj = {
             ...boardData
         }
-        boardObj.userId = userState.user.userId;
-        boardObj.id = uuid();
-        boardObj.createdTime = new Date().getTime();
-        boardObj.createdOn = new Date().toDateString();
-        const userRef = doc(firestore, `users/${
-            userState.user.userId
-        }`);
-        console.log(boardObj)
-        try {
-            const response = await setDoc(userRef, {
-                ...dashboard,
-                [uuid()]: boardObj
-            });
-            console.log(response);
-        } catch (err) {
-            console.log(err);
-        }
+        cloneProject(boardObj, userState.user.userId, dashboard);
         randtoggle(prev => !prev);
     }
 
-    const deleteProjectHandler = async (projectkey) => {
-      console.log(userState.user.userId)
-      const deleteRef = doc(firestore, `users/${userState.user.userId}`);
-      try {
-          await updateDoc(deleteRef, {[projectkey]: deleteField()})
-          console.log("delete", projectkey);
-        } catch (err) {
-            console.log(err);
-      }
-      randtoggle(prev => !prev);
+    const deleteProjectHandler = (projectkey) => {
+        // console.log(userState.user.userId)
+        // const deleteRef = doc(firestore, `users/${userState.user.userId}`);
+        // try {
+        //     await updateDoc(deleteRef, {[projectkey]: deleteField()})
+        //     console.log("delete", projectkey);
+        // } catch (err) {
+        //       console.log(err);
+        // }
+        deleteProject(userState.user.userId, projectkey)
+        randtoggle(prev => !prev);
     }
     return (
         <div className="board-card">
@@ -104,7 +90,9 @@ export default function BoardCard({
                     URL
                 </button>
                 <button className="btn icon-btn-md abslt-btn"
-                    onClick={()=>deleteProjectHandler( Projectkey)}>
+                    onClick={
+                        () => deleteProjectHandler(Projectkey)
+                }>
                     <i className="far fa-trash-alt"></i>
                 </button>
                 <button className="board-card-btn"
