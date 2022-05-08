@@ -1,7 +1,7 @@
 import { firebaseAuth, googleAuthProvider } from "firebase.config";
 import { signInWithPopup } from "firebase/auth";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate as Navigate } from "react-router-dom";
 import { useAuth } from "context/AuthContext";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import "./LoginPage.css";
@@ -14,6 +14,7 @@ export const LoginPage = () => {
   }
   const { userState, userDispatch } = useAuth();
   // let vari = useAuth();
+  const navigate = Navigate();
   async function onSubmitHandler() {
     try {
       const response = await signInWithEmailAndPassword(
@@ -36,6 +37,7 @@ export const LoginPage = () => {
         userId: response?.user?.uid ?? "",
         photo: response.user.photoURL ?? "",
       });
+      navigate("/");
     } catch (err) {
       console.log("login eror", err);
     }
@@ -60,6 +62,7 @@ export const LoginPage = () => {
         userId: response?.user?.uid ?? "",
         photo: response.user.photoURL ?? "",
       });
+      navigate("/");
     } catch (err) {
       console.log("login gauth err", err);
     }
@@ -75,6 +78,7 @@ export const LoginPage = () => {
   const Anonymous = () => {
     console.log("click");
     AnonymousUser(userDispatch);
+    navigate("/");
   };
 
   return (

@@ -1,6 +1,6 @@
 import { Login } from "assets/images/images";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate as Navigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { firebaseAuth, googleAuthProvider } from "firebase.config";
 import { useAuth } from "context/AuthContext";
@@ -13,6 +13,7 @@ export const SignUpPage = () => {
   function guestUserHandler() {
     setData({ email: "dummy@gmail.com", password: "dummy@123" });
   }
+  const navigate = Navigate();
 
   async function onSubmitHandler() {
     try {
@@ -36,6 +37,7 @@ export const SignUpPage = () => {
         userId: response?.user?.uid ?? "",
         photo: response.user.photoURL ?? "",
       });
+      navigate("/");
     } catch (err) {
       console.log("sign up err", err);
     }
@@ -59,6 +61,7 @@ export const SignUpPage = () => {
         photo: response.user.photoURL ?? "",
       });
       console.log("signup gauth resp", response);
+      navigate("/");
     } catch (err) {
       console.log("signup gauth resp", err);
     }
