@@ -108,7 +108,7 @@ export const CommentCard = ({
 				{feedback.likes}
 				<i onClick={updateLikes} className="far fa-thumbs-up thumb"></i>
 				<i className="far fa-comment comment"></i>
-				<i class="fas fa-trash" onClick={deleteComment}></i>
+				<i className="fas fa-trash" onClick={deleteComment}></i>
 			</div>
 			{isEdit && <AddFeedback
 			toggleModal={toggleEdit}
