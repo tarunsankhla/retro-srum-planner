@@ -7,7 +7,8 @@ import {
   signInWithEmailAndPassword,
   googleAuthProvider,
 } from "firebase.config";
-import { doc, getDoc, updateDoc, deleteField } from "firebase/firestore";
+import { doc, getDoc, updateDoc, deleteField, setDoc } from "firebase/firestore";
+import {v4 as uuid} from "uuid";
 
 function updateBoardData(boarddata, userId, projectId) {
   const doctoupdate = doc(firestore, `users/${userId}`, projectId);
@@ -109,7 +110,7 @@ const getProjectData = async (
 function deleteProject(userId, projectId) {
   const doctoupdate = doc(firestore, `users/${userId}`);
   updateDoc(doctoupdate, {
-    projectId: deleteField(),
+    [projectId]: deleteField(),
   })
     .then((resp) => console.log(resp))
     .catch((err) => {
@@ -117,6 +118,25 @@ function deleteProject(userId, projectId) {
     });
 }
 
+
+function cloneProject(boardObj,userId,dashboard) { 
+  boardObj.userId = userId;
+  boardObj.id = uuid();
+  boardObj.createdTime = new Date().getTime();
+  boardObj.createdOn = new Date().toDateString();
+  const userRef = doc(firestore, `users/${
+      userId
+  }`);
+  console.log(boardObj)
+  try {
+      setDoc(userRef, {
+          ...dashboard,
+          [uuid()]: boardObj
+      });
+  } catch (err) {
+      console.log(err);
+  }
+}
 function AnonymousUser(userDispatch) {
   console.log("anonymous");
   signInAnonymously(firebaseAuth)
@@ -152,6 +172,7 @@ export {
   getBoardData,
   getProjectData,
   deleteProject,
+  cloneProject,
   updateBoardData,
   resetPassword,
   signInWithEmail,

@@ -10,6 +10,7 @@ const initialBoardObject = {
   title: "",
   date: new Date(),
   createdTime: new Date().getTime(),
+  expiryTime: 0,
   maxVotes: 5,
   column1: {
     name: "Good features",
@@ -56,12 +57,13 @@ export function CreateBoard({ toggle }) {
   };
 
   const addBoard = async () => {
-    boardObject.expiryTime = 1;
+    // boardObject.expiryTime = 1;
     boardObject.userId = userState.user.userId;
     boardObject.id = uuid();
     boardObject.createdTime = new Date().getTime();
+    boardObject.createdOn = new Date().toDateString();
     const userRef = doc(firestore, `users/${userState.user.userId}`);
-
+    console.log(boardObject)
     try {
       const response = await setDoc(userRef, {
         ...dashboard,
@@ -73,6 +75,7 @@ export function CreateBoard({ toggle }) {
     }
 
     setUpdateData((update) => !update);
+    toggle();
   };
 
   return (
@@ -93,14 +96,15 @@ export function CreateBoard({ toggle }) {
         </div>
         <div className="createboard-input-wrapper">
           <label htmlFor="" className="createboard-input-label">
-            Max votes
+          Expiry Time
           </label>
           <input
-            name="maxVotes"
+            name="expiryTime"
             onChange={changeHandler}
-            value={boardObject.maxVotes}
+            value={boardObject.expiryTime}
             type="number"
             className="createboard-input"
+            placeholder="in mins"
           />
         </div>
         <span className="createboard-input-label">Review Columns</span>
