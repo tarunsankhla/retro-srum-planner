@@ -50,6 +50,16 @@ export function AddFeedback({
       setError("")
     }
 
+    console.log("isFlag ",isEdit)
+    console.log("userid from auth ",userState.user.userId)
+    console.log("feedback user id ",feedbackObj.userId)
+    console.log("UserId from props",userId)
+    
+    if(userState.user.userId !== feedbackObj.userId && isEdit && userState.user.userId !== userId){
+      alert("you are not valid to enter");
+      return
+    }
+
     const columnNo = columnNumber();
 
     const doctoupdate = doc(firestore, `users/${userId}`);
@@ -59,7 +69,7 @@ export function AddFeedback({
       feedbacks: !isEdit
         ? [
             ...project[columnNo].feedbacks,
-            { id: uuid(), textField: feedback.text, likes: 0, comments: [] },
+            { id: uuid(), textField: feedback.text, likes: 0, comments: [],userId: userState.user.userId},
           ]
         : [
             ...project[columnNo].feedbacks.map((currentFeedback) => {
