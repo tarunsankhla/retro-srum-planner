@@ -64,7 +64,7 @@ export function AddFeedback({
       feedbacks: !isEdit
         ? [
             ...project[columnNo].feedbacks,
-            { id: uuid(), textField: feedback.text, likes: 0, comments: [],userId: userState.user.userId},
+            { id: uuid(), textField: feedback.text, likes: 0, comments: [],userId: userState.user.userId, isPinned:false },
           ]
         : [
             ...project[columnNo].feedbacks.map((currentFeedback) => {
