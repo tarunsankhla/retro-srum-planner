@@ -6,6 +6,7 @@ import { getProjectData } from "utils/boardService";
 import "./addFeedback.css";
 import { useAuth } from "context/AuthContext";
 import { useNavigate } from "react-router";
+import { Alert } from "utils/alert";
 
 export function AddFeedback({
   toggleModal,
@@ -51,7 +52,7 @@ export function AddFeedback({
     }
     
     if(userState.user.userId !== feedbackObj.userId && isEdit && userState.user.userId !== userId){
-      alert("you are not valid to enter");
+      Alert("error","you are not valid to enter");
       return
     }
 
