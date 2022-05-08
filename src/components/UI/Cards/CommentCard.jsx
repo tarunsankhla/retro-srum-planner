@@ -22,6 +22,7 @@ export const CommentCard = ({
 
   const [flag, setFlag] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [showCommentBox, setShowCommentBox] = useState(false); // By saurabh
   const [isComment, setIsComment] = useState(false);
   const [commentText, setCommentText] = useState("");
 
@@ -110,6 +111,7 @@ export const CommentCard = ({
   };
 
   const addComment = (e) => {
+	  e.preventDefault()
     const doctoupdate = doc(firestore, `users/${userId}`);
 
     const currentComment = {
@@ -190,7 +192,8 @@ export const CommentCard = ({
     }, 200);
   };
 
-  const editComment = (editComment) => {
+  const editComment = (editComment,e) => {
+	  e.preventDefault()
     if (
       userState.user.userId !== editComment.userId &&
       userState.user.userId !== userId
@@ -241,28 +244,47 @@ export const CommentCard = ({
 
   return (
     <div className={`comment-card-wrapper ${color}`}>
-      <i
-        className="fas fa-ellipsis-v card-option-menu"
-        onClick={editFeedback}
-      ></i>
+	  <i class="far fa-trash-alt trash" onClick={deleteFeedback}></i>
       <p className="comment-card-text">{feedback?.textField}</p>
-      <div className="comment-card-buttons">
-        {feedback.likes}
-        <i onClick={updateLikes} className="far fa-thumbs-up thumb"></i>
-        {feedback.comments.length}
-        <i className="far fa-comment comment" onClick={toggleComment}></i>
-        <i class="fas fa-trash" onClick={deleteFeedback}></i>
-      </div>
+      
       {isComment && (
-        <div>
-          <input
+		  <form
+          onSubmit={addComment}
+          className="comment-card-comments"
+        >
+          <textarea
+            className="comment-textarea"
             type="text"
+            name="text"
+            placeholder="comments"
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
           />
-          <button onClick={addComment}>add</button>
-        </div>
+          <div className="comment-cta-buttons">
+            <button
+               onClick={toggleComment}
+              className="btn secondary-outline-btn-sm"
+            >
+              Cancel
+            </button>
+            <button type="submit" className="btn primary-btn-sm" onClick={addComment}>
+              Post
+            </button>
+          </div>
+        </form>
       )}
+	
+		<div className="comment-card-buttons">
+        {feedback.likes}
+        <i onClick={updateLikes} className="far fa-thumbs-up thumb"></i>
+		{feedback.comments.length}
+        <i
+          onClick={toggleComment}
+          className="far fa-comment comment"
+        ></i>
+        <i className="fas fa-pen pen-edit" onClick={editFeedback}></i>
+      </div> 
+	  
       {isComment &&
         feedback.comments.map((comment) => {
 			
@@ -275,15 +297,31 @@ export const CommentCard = ({
               </button>
             </div>
           ) : (
-            <div>
-              <input
-                type="text"
-                value={isCommentEditable.commentText}
-                onChange={(e) => setIsCommentEditabe(prevObj => ({...prevObj,commentText:e.target.value}))}
-              />
-              <button onClick={()=>editComment(comment)}>add</button>
-              <button onClick={()=>setIsCommentEditabe(s=>({...s,commentId:"",commentText:""}))}>cancel</button>
-            </div>
+			
+			<form
+				onSubmit={(e)=>editComment(comment,e)}
+				className="comment-card-comments"
+			>
+				<textarea
+				className="comment-textarea"
+				type="text"
+				name="text"
+				placeholder="comments"
+				value={isCommentEditable.commentText}
+				onChange={(e) => setIsCommentEditabe(prevObj => ({...prevObj,commentText:e.target.value}))}
+				/>
+				<div className="comment-cta-buttons">
+				<button
+					onClick={()=>setIsCommentEditabe(s=>({...s,commentId:"",commentText:""}))}
+					className="btn secondary-outline-btn-sm"
+				>
+					Cancel
+				</button>
+				<button type="submit" className="btn primary-btn-sm" onClick={(e)=>editComment(comment,e)}>
+					Post
+				</button>
+				</div>
+			</form>
           );
         })}
       {isEdit && (

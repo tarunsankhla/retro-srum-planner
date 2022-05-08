@@ -1,7 +1,7 @@
 .navbar-wrapper {
   width: 100%;
   margin: auto;
-  padding: 0.5rem 3.5rem;
+  padding: 0.5rem 1rem;
   position: sticky;
   top: 0;
   background-color: white;
@@ -21,4 +21,10 @@
 
 .navbar-auth-section > div {
   margin-left: 0.8rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .navbar-wrapper {
+    padding: 0.5rem 1rem;
+  }
 }
