@@ -58,14 +58,14 @@ export const Publicboard = () => {
 
 	return (
 		<div className="publicboard-wrapper">
-			{isModal ? (
+			{isModal && (
 				<AddFeedback
 					toggleModal={toggleModal}
 					columnName={columnName}
 					userId={userId}
 					project={project}
 				/>
-			) : null}
+			) }
 			<div className=" flex-row-center flex-justify-space-between pd-point8-lr mg-point6-bot">
 				<h1 className="title-lg">{project?.title}</h1>
 				<select className="publicboard-sorting">
