@@ -49,6 +49,11 @@ export function AddFeedback({
     }else{
       setError("")
     }
+    
+    if(userState.user.userId !== feedbackObj.userId && isEdit && userState.user.userId !== userId){
+      alert("you are not valid to enter");
+      return
+    }
 
     const columnNo = columnNumber();
 
@@ -59,7 +64,7 @@ export function AddFeedback({
       feedbacks: !isEdit
         ? [
             ...project[columnNo].feedbacks,
-            { id: uuid(), textField: feedback.text, likes: 0, comments: [] },
+            { id: uuid(), textField: feedback.text, likes: 0, comments: [],userId: userState.user.userId},
           ]
         : [
             ...project[columnNo].feedbacks.map((currentFeedback) => {

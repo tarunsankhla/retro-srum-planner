@@ -1,70 +1,26 @@
-import { firebaseAuth, googleAuthProvider } from "firebase.config";
-import { signInWithPopup } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate as Navigate } from "react-router-dom";
 import { useAuth } from "context/AuthContext";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import "./LoginPage.css";
-import { AnonymousUser } from "utils/boardService";
+import { signInWithEmail, LoginWIthGoogleAuth } from "utils/boardService";
+import { ResetPassword } from "components/UI/Modal/ResetPassword";
 
 export const LoginPage = () => {
   const [data, setData] = useState({ email: "", password: "" });
-  function guestUserHandler() {
-    setData({ email: "dummy@gmail.com", password: "dummy@123" });
-  }
-  const { userState, userDispatch } = useAuth();
-  // let vari = useAuth();
-  const navigate = Navigate();
-  async function onSubmitHandler() {
-    try {
-      const response = await signInWithEmailAndPassword(
-        firebaseAuth,
-        data.email,
-        data.password
-      );
-      var token = response.user.accessToken;
-      var userid = response.user.uid;
-      var email = response.user.email;
-      var displayName = response.user.displayName;
-      var userpic = response.user.photoURL;
-      userDispatch({
-        type: "userauth",
-        token: response?.user?.accessToken ?? "",
-        name: response?.user?.displayName ?? "",
-        emailId: response?.user?.email ?? "",
-        userId: response?.user?.uid ?? "",
-        photo: response.user.photoURL ?? "",
-      });
-      navigate("/");
-    } catch (err) {
-      console.log("login eror", err);
-    }
-  }
+  const [showResetPassword, setShowResetPassword] = useState(false);
 
-  async function LoginWIthGoogleAuth() {
-    try {
-      const response = await signInWithPopup(firebaseAuth, googleAuthProvider);
-      console.log("login gauth resp", response);
-      // useDispatch()
-      var token = response.user.accessToken;
-      var userid = response.user.uid;
-      var email = response.user.email;
-      var displayName = response.user.displayName;
-      var userpic = response.user.photoURL;
-      console.log(token, userid, email, displayName, userpic);
-      userDispatch({
-        type: "userauth",
-        token: response?.user?.accessToken ?? "",
-        name: response?.user?.displayName ?? "",
-        emailId: response?.user?.email ?? "",
-        userId: response?.user?.uid ?? "",
-        photo: response.user.photoURL ?? "",
-      });
+  const navigate = Navigate();
+  const { userDispatch } = useAuth();
+
+  const loginClickHandler = (e) => {
+    e.preventDefault();
+    if (data.email.trim() === "" || data.password.trim() === "") {
+      alert("Input cannot be blank");
+    } else {
+      signInWithEmail(data, userDispatch);
       navigate("/");
-    } catch (err) {
-      console.log("login gauth err", err);
     }
-  }
+  };
 
   const inputHandler = (e) => {
     setData((data) => ({
@@ -73,67 +29,69 @@ export const LoginPage = () => {
     }));
   };
 
-  const Anonymous = () => {
-    AnonymousUser(userDispatch);
-    navigate("/");
-  };
-
   return (
     <>
+      {showResetPassword && (
+        <ResetPassword setShowResetPassword={setShowResetPassword} />
+      )}
       <div className="login-body-container">
         <div className="login-container">
           <div className="title-header">
             <h1 className="title-xl-wt-bold mg-1-bot">Login</h1>
-            <div className="login-credential-container">
-              <input
-                placeholder="Email Address - xyz@gmail.com"
-                name="email"
-                value={data.email}
-                onChange={inputHandler}
-              />
-            </div>
-            <div className="login-credential-container">
-              <input
-                type="password"
-                onChange={inputHandler}
-                name="password"
-                value={data.password}
-                placeholder="Password"
-                id=""
-              />
-            </div>
-            <div className="login-rem-forgetpass-container">
-              <div className="title-md-wt-5">
-                <label>
-                  <input className="mg-point6-rt" type="checkbox" name="" />
-                  Remember me
-                </label>
+            <form onSubmit={(e) => loginClickHandler(e)}>
+              <div className="login-credential-container">
+                <input
+                  placeholder="Email Address - xyz@gmail.com"
+                  name="email"
+                  type="email"
+                  required="required"
+                  value={data.email}
+                  onChange={inputHandler}
+                />
               </div>
-              <div className="title-md-wt-5">Forgot your password?</div>
-            </div>
-            <div className="login-cta-buttons">
-              <button className="btn primary-btn-md" onClick={onSubmitHandler}>
-                Login
+              <div className="login-credential-container">
+                <input
+                  type="password"
+                  onChange={inputHandler}
+                  name="password"
+                  required="required"
+                  value={data.password}
+                  placeholder="Password"
+                />
+              </div>
+              <div
+                onClick={() => {
+                  setShowResetPassword(true);
+                }}
+                className="forget-password"
+              >
+                Forgot your password?
+              </div>
+
+              <div className="login-cta-buttons">
+                <button
+                  className="btn primary-btn-md"
+                  onClick={loginClickHandler}
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+            <div className="google-login-container">
+              <button
+                className="btn secondary-outline-btn-md google-login"
+                onClick={() => {
+                  LoginWIthGoogleAuth(userDispatch);
+                  navigate("/");
+                }}
+              >
+                <i className="fab fa-google"></i>
+                login with Google
               </button>
-              <div className="flex-row-center flex-justify-space-between">
-                <button
-                  className="btn secondary-outline-btn-md login-logo"
-                  onClick={LoginWIthGoogleAuth}
-                >
-                  <i className="fab fa-google"></i>
-                  login with Google
-                </button>
-                <button
-                  className="btn primary-outline-btn-md "
-                  onClick={Anonymous}
-                >
-                  Anonymous User
-                </button>
-              </div>
-              <Link className="btn primary-text-btn-md mg-1-top" to="/signup">
-                Create New Account
-              </Link>
             </div>
+            <Link className="btn primary-text-btn-md mg-1-top" to="/signup">
+              Create New Account
+            </Link>
           </div>
         </div>
       </div>
