@@ -28,7 +28,6 @@ export const SignUpPage = () => {
       var email = response.user.email ?? "";
       var displayName = response.user.displayName ?? "";
       var userpic = response.user.photoURL ?? "";
-      console.log(token, userid, email, displayName, userpic);
       userDispatch({
         type: "userauth",
         token: response?.user?.accessToken ?? "",

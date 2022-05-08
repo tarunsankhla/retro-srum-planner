@@ -4,6 +4,8 @@ import { v4 as uuid } from "uuid";
 import { useState, useEffect } from "react";
 import { getProjectData } from "utils/boardService";
 import "./addFeedback.css";
+import { useAuth } from "context/AuthContext";
+import { useNavigate } from "react-router";
 
 export function AddFeedback({
   toggleModal,
@@ -11,8 +13,14 @@ export function AddFeedback({
   userId,
   project,
   setProject,
+  isEdit = false,
+  feedbackObj = { textField: "" },
 }) {
-  const [feedback, setFeedBack] = useState({ text: "", name: columnName });
+  const initialFeedback = { text: feedbackObj.textField, name: columnName };
+  const [feedback, setFeedBack] = useState(initialFeedback);
+  const [error,setError] = useState("")
+  const { userState } = useAuth();
+  const navigate = useNavigate();
 
   const columnNumber = () => {
     if (project.column1.name === columnName) {
@@ -34,16 +42,32 @@ export function AddFeedback({
 
   const updateFeedback = (e) => {
     e.preventDefault();
+
+    if(feedback.text.trim() === ""){
+      setError("Please enter some comment");
+      return 
+    }else{
+      setError("")
+    }
+
     const columnNo = columnNumber();
 
     const doctoupdate = doc(firestore, `users/${userId}`);
 
     let columnUpdate = {
       ...project[columnNo],
-      feedbacks: [
-        ...project[columnNo].feedbacks,
-        { id: uuid(), textField: feedback.text, likes: 0, comments: [] },
-      ],
+      feedbacks: !isEdit
+        ? [
+            ...project[columnNo].feedbacks,
+            { id: uuid(), textField: feedback.text, likes: 0, comments: [] },
+          ]
+        : [
+            ...project[columnNo].feedbacks.map((currentFeedback) => {
+              return currentFeedback.id === feedbackObj.id
+                ? { ...currentFeedback, textField: feedback.text }
+                : currentFeedback;
+            }),
+          ],
       name: columnName,
     };
     let updateObj = { [project.key]: { ...project, [columnNo]: columnUpdate } };
@@ -53,11 +77,12 @@ export function AddFeedback({
       .catch((err) => {
         console.log(err);
       });
+      
+      toggleModal();
   };
 
   useEffect(() => {
-    console.log("updated prject data");
-    getProjectData(setProject, userId, project.id);
+    getProjectData(setProject, userId, project.id, userState, navigate);
   }, [project.id]);
 
   return (
@@ -81,13 +106,13 @@ export function AddFeedback({
             type="text"
             value={feedback.text}
           />
+          {error && <span className="error-text">{error}</span>}
         </div>
         <div className="addfeedback-cta">
           <button
             className="btn primary-btn-md"
             onClick={(e) => {
               updateFeedback(e);
-              toggleModal();
             }}
           >
             save
