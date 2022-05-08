@@ -34,13 +34,21 @@ export const Navbar = () => {
             Logout
           </button>
         )}
-        {userState.user.photo ? (
-          <div className="avatar avatar-xsm-round">
-            <img loading="lazy" src={userState.user.photo} alt="avatar-image" />
-          </div>
-        ) : (
-          <div className="avatar text-avatar-xsm-round">IN</div>
-        )}{" "}
+        {userState.token && (
+          <>
+            {userState.user.photo ? (
+              <div className="avatar avatar-xsm-round">
+                <img
+                  loading="lazy"
+                  src={userState.user.photo}
+                  alt="avatar-image"
+                />
+              </div>
+            ) : (
+              <div className="avatar text-avatar-xsm-round">IN</div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );

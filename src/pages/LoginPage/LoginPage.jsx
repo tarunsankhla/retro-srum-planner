@@ -101,36 +101,37 @@ export const LoginPage = () => {
               />
             </div>
             <div className="login-rem-forgetpass-container">
-              <div>
-                <input type="checkbox" name="" id="" />
-                Remember me
+              <div className="title-md-wt-5">
+                <label>
+                  <input className="mg-point6-rt" type="checkbox" name="" />
+                  Remember me
+                </label>
               </div>
-              <div className="btn-link">Forgot your password?</div>
+              <div className="title-md-wt-5">Forgot your password?</div>
             </div>
-            <button className="btn primary-btn-md" onClick={onSubmitHandler}>
-              Login
-            </button>
-            <button
-              className="btn primary-btn-md"
-              onClick={() => {
-                guestUserHandler();
-              }}
-            >
-              Guest User
-            </button>
-            <button className=" login-logo" onClick={LoginWIthGoogleAuth}>
-              <i className="fab fa-google"></i>
-              Login with Google
-            </button>
-            <button className="btn primary-outline-btn-md " onClick={Anonymous}>
-              Anonymous User
-            </button>
-            <Link
-              className="btn primary-text-btn-sm create-account-btn "
-              to="/signup"
-            >
-              Create New Account
-            </Link>
+            <div className="login-cta-buttons">
+              <button className="btn primary-btn-md" onClick={onSubmitHandler}>
+                Login
+              </button>
+              <div className="flex-row-center flex-justify-space-between">
+                <button
+                  className="btn secondary-outline-btn-md login-logo"
+                  onClick={LoginWIthGoogleAuth}
+                >
+                  <i className="fab fa-google"></i>
+                  Login with Google
+                </button>
+                <button
+                  className="btn primary-outline-btn-md "
+                  onClick={Anonymous}
+                >
+                  Anonymous User
+                </button>
+              </div>
+              <Link className="btn primary-text-btn-md mg-1-top" to="/signup">
+                Create New Account
+              </Link>
+            </div>
           </div>
         </div>
       </div>
