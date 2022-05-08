@@ -1,22 +1,28 @@
 import "./Publicboard.css";
 import { NewComment, AddFeedback } from "components";
 import { CommentCard } from "components";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { ROUTES } from "utils/routes";
 import { AnonymousUser } from "utils/boardService";
 import { useAuth } from "context/AuthContext";
 import { getProjectData } from "utils/boardService";
 
 export const Publicboard = () => {
 	const { userId, projectId } = useParams();
-	const { userDispatch } = useAuth();
+	const navigate = useNavigate();
+	console.log(
+		{
+			userId,
+			projectId,
+		},
+		useParams()
+	);
+	const { userState, userDispatch } = useAuth();
 	const [project, setProject] = useState({});
 
 	const [isModal, setIsModal] = useState(false);
 	const [columnName, setColumnName] = useState("");
 
-	const { userState } = useAuth();
 	const toggleModal = () => {
 		setIsModal((isModal) => !isModal);
 	};
@@ -34,8 +40,7 @@ export const Publicboard = () => {
 	}, []);
 
 	useEffect(() => {
-		// getProjectData();
-		getProjectData(setProject, userId, projectId);
+		getProjectData(setProject, userId, projectId, userState, navigate);
 	}, [projectId, isModal]);
 
 	return (

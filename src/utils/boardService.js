@@ -25,7 +25,13 @@ const getBoardData = async (setData, userId) => {
 };
 
 // get project data
-const getProjectData = async (setProject, userId, projectId) => {
+const getProjectData = async (
+  setProject,
+  userId,
+  projectId,
+  userState,
+  navigate
+) => {
   const userRef = doc(firestore, `users/${userId}`);
 
   try {
@@ -34,7 +40,18 @@ const getProjectData = async (setProject, userId, projectId) => {
       ([key, value]) => value.id === projectId
     );
     project.key = projectKey;
-    setProject(project);
+    const userId = userState.user.userId;
+    const newDateTime = new Date().getTime();
+    const remainigTime = newDateTime - project.expiryTime * 60 * 1000;
+    console.log(remainigTime);
+    if (remainigTime > project.createdTime) {
+      if (userId !== project.userId) {
+        alert("Time expired");
+        navigate("/");
+      }
+      setProject(project);
+    } else {
+    }
     console.log({ project });
   } catch (error) {
     console.log(error);
