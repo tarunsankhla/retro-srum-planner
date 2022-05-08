@@ -1,16 +1,6 @@
-<<<<<<< HEAD
-import {Login} from "assets/images/images";
-import {firebaseAuth, googleAuthProvider} from "firebase.config";
-import {signInWithPopup} from "firebase/auth";
-import React, {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import {useAuth} from "context/AuthContext";
-import {signInWithEmailAndPassword} from "firebase/auth";
-=======
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate as Navigate } from "react-router-dom";
 import { useAuth } from "context/AuthContext";
->>>>>>> master
 import "./LoginPage.css";
 import { signInWithEmail, LoginWIthGoogleAuth } from "utils/boardService";
 import { ResetPassword } from "components/UI/Modal/ResetPassword";
