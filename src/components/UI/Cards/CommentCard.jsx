@@ -77,7 +77,7 @@ export const CommentCard = ({
       userState.user.userId !== feedback.userId &&
       userState.user.userId !== userId
     ) {
-      Alert("error","error","You dont have access to others feedback");
+      Alert("error","You dont have access to others feedback");
       return;
     }
 
@@ -108,7 +108,7 @@ export const CommentCard = ({
 
   const editFeedback = (e) => {
 	if(userState.user.userId !== feedback.userId && userState.user.userId !== userId){
-		Alert("error","error","You dont have access to others feedback");
+		Alert("error","You dont have access to others feedback");
 		return
 	  }
     setIsEdit((s) => !s);
@@ -163,7 +163,7 @@ export const CommentCard = ({
       userState.user.userId !== commentUserId &&
       userState.user.userId !== userId
     ) {
-      Alert("error","error","You dont have access to others comment");
+      Alert("error","You dont have access to others comment");
       return;
     }
 
