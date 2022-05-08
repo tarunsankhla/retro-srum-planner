@@ -64,7 +64,8 @@
 .thumb,
 .comment,
 .pen-edit,
-.trash {
+.trash,
+.pin {
   padding: 10px;
   font-size: 0.9rem;
   margin-left: 5px;
@@ -79,12 +80,18 @@
 .thumb:hover,
 .comment:hover,
 .pen-edit:hover,
-.trash:hover {
+.trash:hover,
+.pin:hover {
   color: var(--primary-color);
 }
 
 .comment {
   padding-right: 5px;
+}
+
+.pin{
+  display: flex;
+  padding-right: 4px;
 }
 
 .went-well {

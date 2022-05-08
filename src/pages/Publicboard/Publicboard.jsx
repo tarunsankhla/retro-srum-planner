@@ -64,7 +64,14 @@ export const Publicboard = () => {
             setColumnName={setColumnName}
           />
           <div>
-            {project?.column1?.feedbacks?.map((feedback) => (
+            {[
+              ...project?.column1?.feedbacks?.filter(
+                (feedback) => feedback.isPinned
+              ),
+              ...project?.column1?.feedbacks?.filter(
+                (feedback) => !feedback.isPinned
+              ),
+            ].map((feedback) => (
               <CommentCard
                 setProject={setProject}
                 key={feedback.id}
@@ -84,7 +91,14 @@ export const Publicboard = () => {
             setColumnName={setColumnName}
           />
           <div>
-            {project?.column2?.feedbacks?.map((feedback) => (
+            {[
+              ...project?.column2?.feedbacks?.filter(
+                (feedback) => feedback.isPinned
+              ),
+              ...project?.column2?.feedbacks?.filter(
+                (feedback) => !feedback.isPinned
+              ),
+            ].map((feedback) => (
               <CommentCard
                 setProject={setProject}
                 key={feedback.id}
@@ -104,7 +118,14 @@ export const Publicboard = () => {
             setColumnName={setColumnName}
           />
           <div>
-            {project?.column3?.feedbacks?.map((feedback) => (
+            {[
+              ...project?.column3?.feedbacks?.filter(
+                (feedback) => feedback.isPinned
+              ),
+              ...project?.column3?.feedbacks?.filter(
+                (feedback) => !feedback.isPinned
+              ),
+            ].map((feedback) => (
               <CommentCard
                 setProject={setProject}
                 feedback={feedback}
