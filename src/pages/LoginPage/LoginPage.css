@@ -51,6 +51,18 @@
   background-color: #a0d3ef;
 }
 
+.forget-password {
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  width: 10.2rem;
+  margin-bottom: 10px;
+}
+
+.forget-password:hover {
+  color: var(--primary-color);
+}
+
 .login-btn-container {
   padding: 1em;
 }
@@ -77,7 +89,7 @@
   border: none;
 }
 
-.login-logo i {
+.google-login i {
   margin-right: 5px;
 }
 
@@ -96,12 +108,18 @@ button:disabled {
 }
 
 .login-cta-buttons {
-  display: grid;
-
-  margin: 1.5rem 0 0.6rem;
+  margin-top: 1rem;
 }
 
-.login-cta-buttons button {
+.login-cta-buttons,
+.google-login-container {
+  display: grid;
+  margin: 5px 0;
+  width: 100%;
+}
+
+.login-cta-buttons button,
+.google-login-container button {
   margin: 10px 0;
 }
 

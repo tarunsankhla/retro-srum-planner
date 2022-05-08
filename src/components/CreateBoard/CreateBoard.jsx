@@ -59,6 +59,7 @@ export function CreateBoard({ toggle }) {
     boardObject.expiryTime = 1;
     boardObject.userId = userState.user.userId;
     boardObject.id = uuid();
+    boardObject.createdTime = new Date().getTime();
     const userRef = doc(firestore, `users/${userState.user.userId}`);
 
     try {

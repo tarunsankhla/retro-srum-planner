@@ -6,7 +6,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   margin: 2rem auto;
   gap: 1.5rem;
   width: fit-content;
@@ -24,6 +23,13 @@
   border: 1px solid rgb(186, 186, 186);
 }
 
+.signup-container input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid gray;
+}
+
 @media screen and (max-width: 768px) {
   .signup-image {
     display: none;
@@ -34,7 +40,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     margin: 2rem auto;
     gap: 1.5rem;
     width: fit-content;

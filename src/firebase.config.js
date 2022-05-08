@@ -1,6 +1,13 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth, GoogleAuthProvider,signInWithPopup,signInAnonymously } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInAnonymously,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import {
   collection,
   addDoc,
@@ -33,6 +40,8 @@ export {
   googleAuthProvider,
   signInAnonymously,
   signInWithPopup,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
   collection,
   doc,
   addDoc,
