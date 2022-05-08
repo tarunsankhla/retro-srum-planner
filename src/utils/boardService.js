@@ -26,35 +26,42 @@ const getBoardData = async (setData, userId) => {
 
 // get project data
 const getProjectData = async (
-	setProject,
-	userId,
-	projectId,
-	userState,
-	navigate
+  setProject,
+  userId,
+  projectId,
+  userState,
+  navigate
 ) => {
-	const userRef = doc(firestore, `users/${userId}`);
+  const userRef = doc(firestore, `users/${userId}`);
 
-	try {
-		const usersList = await getDoc(userRef);
-		const [projectKey, project] = Object.entries(usersList.data()).find(
-			([key, value]) => value.id === projectId
-		);
-		project.key = projectKey;
-		const userId = userState.user.userId;
-		const newDateTime = new Date().getTime();
-		const remainigTime = newDateTime - project.expiryTime * 60 * 1000;
-		console.log(remainigTime);
-		if (remainigTime > project.createdTime) {
-			if (userId !== project.userId) {
-				alert("Time expired");
-				navigate("/");
-			}
-		}
-		setProject(project);
-		console.log({ project });
-	} catch (error) {
-		console.log(error);
-	}
+  try {
+    const usersList = await getDoc(userRef);
+    const [projectKey, project] = Object.entries(usersList.data()).find(
+      ([key, value]) => value.id === projectId
+    );
+    project.key = projectKey;
+ 
+    let start = project.createdTime;
+    let end = new Date().getTime();
+
+    let diff = end - start;
+    let seconds = Math.floor(diff/ 1000 / 60);
+
+
+    
+    console.log(seconds,project.expiryTime);
+    if (seconds > project.expiryTime) {
+      console.log("projectId",userId,project.userId)
+      if (userState.user.userId !== project.userId) {
+        alert("Time expired");
+        navigate("/");
+      }
+    }
+    setProject(project);
+    console.log({ project });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 function deleteProject(userId, projectId) {

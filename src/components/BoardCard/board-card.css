@@ -4,8 +4,9 @@
   gap: 0.32rem;
   padding: 1rem;
   border-radius: 0.65rem;
-  background-color: rgb(214, 255, 207);
-  min-width: 200px;
+  background-color: rgba(0,0,0,0.05);
+  min-width: 14rem;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
 }
 
 .board-card-body {
