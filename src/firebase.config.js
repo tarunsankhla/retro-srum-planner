@@ -7,6 +7,7 @@ import {
   signInAnonymously,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import {
   collection,
@@ -42,6 +43,7 @@ export {
   signInWithPopup,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   collection,
   doc,
   addDoc,
