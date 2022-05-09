@@ -5,12 +5,13 @@ import { firestore } from "firebase.config";
 import { doc, setDoc } from "firebase/firestore";
 import { useAuth } from "context/AuthContext";
 import { useDashboard } from "context/DashboardContext";
+import { Alert } from "utils/alert";
 
 const initialBoardObject = {
   title: "",
   date: new Date(),
   createdTime: new Date().getTime(),
-  expiryTime: 0,
+  expiryTime: 5,
   maxVotes: 5,
   column1: {
     name: "Good features",
@@ -76,6 +77,7 @@ export function CreateBoard({ toggle }) {
 
     setUpdateData((update) => !update);
     toggle();
+    Alert("success", "New Dashboard Added!!");
   };
 
   return (
