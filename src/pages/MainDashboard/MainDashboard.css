@@ -1,55 +1,53 @@
-
-
-.dashboard-container{
-    display: flex;
-    gap: 20px;
-    padding: 40px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+.dashboard-container {
+  display: flex;
+  gap: 20px;
+  padding: 40px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
-.dashboard-create-board{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    padding: 3rem;
-    font-size: 14px;
-    min-width: 14rem;
-    cursor: pointer;
-    color: gray;
-    background-color: transparent;
-    border: 2px dashed lightgray;
-    border-radius: 10px;
+.dashboard-create-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 3rem;
+  font-size: 14px;
+  min-width: 14rem;
+  cursor: pointer;
+  color: gray;
+  background-color: transparent;
+  border: 2px dashed lightgray;
+  border-radius: 10px;
 }
 
-.dashboard-create-board:hover{
-    border: 2px dashed rgb(19, 176, 254);
-    color: rgb(19, 176, 254);
-
+.dashboard-create-board:hover {
+  border: 2px dashed rgb(19, 176, 254);
+  color: rgb(19, 176, 254);
 }
 
-.dash-create-icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    width: 1.6em;
-    height: 1.6em;
-    border-radius: 99px;
-    color: white;
-    transition: all 0.3s ease;
-    background-color: #0f96df;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
+.dash-create-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 99px;
+  color: white;
+  transition: all 0.3s ease;
+  background-color: #0f96df;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
+  margin-bottom: 6px;
 }
 
-.dashboard-create-board:hover .dash-create-icon{
-    color: white;
-    background-color: rgb(19, 176, 254);
+.dashboard-create-board:hover .dash-create-icon {
+  color: white;
+  background-color: rgb(19, 176, 254);
 }
 
-.dashboard-container hr{
-    color:grey
+.dashboard-container hr {
+  color: grey;
 }
