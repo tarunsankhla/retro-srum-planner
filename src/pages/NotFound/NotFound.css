@@ -1,0 +1,32 @@
+.page-not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: var(--dark-bg-color);
+  color: var(--title-color);
+  position: relative;
+}
+
+.error-number {
+  display: flex;
+  position: absolute;
+  margin: auto;
+  top: 6rem;
+}
+
+.error-number h1:nth-child(1) {
+  transform: rotate(30deg);
+}
+
+.error-number h1:nth-child(3) {
+  transform: rotate(80deg);
+  margin-top: 4rem;
+  font-size: 10rem;
+}
+
+.page-not-found h1 {
+  font-size: 8rem;
+  letter-spacing: 2rem;
+}

@@ -297,7 +297,7 @@ export const CommentCard = ({
 
   return (
     <div className={`comment-card-wrapper ${color}`}>
-      <i class="far fa-trash-alt trash" onClick={deleteFeedback}></i>
+      <i className="far fa-trash-alt trash" onClick={deleteFeedback}></i>
       <p className="comment-card-text">{feedback?.textField}</p>
 
       {isComment && (
@@ -379,7 +379,7 @@ export const CommentCard = ({
                       className="btn icon-btn-xsm trash-icon"
                       onClick={() => deleteComment(comment.id, comment.userId)}
                     >
-                      <i class="far fa-trash-alt"></i>
+                      <i className="far fa-trash-alt"></i>
                     </button>
                   </div>
                 </div>

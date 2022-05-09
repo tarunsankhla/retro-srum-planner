@@ -142,6 +142,7 @@ const getProjectData = async (
   } catch (error) {
     console.log(error);
     Alert("error", error.message);
+    navigate("/404");
   }
 };
 
@@ -156,7 +157,7 @@ function deleteProject(userId, projectId) {
       Alert("error", err.message);
     });
 
-  Alert("info", "Dashboard Deleted!!");
+  Alert("info", "Project Deleted!!");
 }
 
 function cloneProject(boardObj, userId, dashboard) {
