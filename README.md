@@ -15,7 +15,7 @@ NitroScrum is one stop solution for all the project activities and increase the 
 ### 1. Anonymous Signin
 
 - User can signin anonymously and give feedbacks to the the public dashboards anonymously without saving any of their data anywhere.
-- Anonymous user have privileges to update, add or remove his own feedbacks and comments
+
 
 ### 2. Cloning Dashboard
 
@@ -28,15 +28,24 @@ NitroScrum is one stop solution for all the project activities and increase the 
 
 - The dasshboard has 3 columns to actually give feebacks on what went well, what went wrong and improvements.
 
+- You can also name this columns according to your need so that manager of dashboard can take the required reviews.
 
-### 4. Wishlist Page
+### 4. Time Limit on Dashboard
 
-
-### 5. Cart Page
-
-
+- The managers can set a time limit on the dashboard beyond which the dasboard wont be accessible for the users.
 
 
+### 5. Feedbacks and Comments
+
+- Anonymous user have privileges to update, add or remove his own feedbacks and comments
+
+- Manager have access to add, modify and delete any comments on his created dashboard.
 ### 6. Login and Signup
+
+- Apart from anonymous login user can user Google account or manual login to creat account
+
+- Only Registered users are allowed to create their own dashboard.
+
+
 
 
