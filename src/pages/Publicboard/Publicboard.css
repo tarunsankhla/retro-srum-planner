@@ -19,6 +19,8 @@
 
 .publicboard-body {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .publicboard-title {
@@ -34,7 +36,7 @@
 .publicboard-actions {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 33.3%;
 }
 
 @media screen and (max-width: 1024px) {
@@ -42,5 +44,21 @@
     padding: 1rem 1rem;
     flex-direction: column;
     margin: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .publicboard-wentwell,
+  .publicboard-improve,
+  .publicboard-actions {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .publicboard-wentwell,
+  .publicboard-improve,
+  .publicboard-actions {
+    width: 100%;
   }
 }

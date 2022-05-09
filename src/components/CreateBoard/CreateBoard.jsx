@@ -27,8 +27,6 @@ const initialBoardObject = {
   },
 };
 
-// const
-
 export function CreateBoard({ toggle }) {
   const [boardObject, setBoardObject] = useState(initialBoardObject);
   const { userState } = useAuth();
@@ -58,26 +56,22 @@ export function CreateBoard({ toggle }) {
   };
 
   const addBoard = async () => {
-    // boardObject.expiryTime = 1;
     boardObject.userId = userState.user.userId;
     boardObject.id = uuid();
     boardObject.createdTime = new Date().getTime();
     boardObject.createdOn = new Date().toDateString();
     const userRef = doc(firestore, `users/${userState.user.userId}`);
-    console.log(boardObject)
     try {
-      const response = await setDoc(userRef, {
+      await setDoc(userRef, {
         ...dashboard,
         [uuid()]: boardObject,
       });
-      console.log(response);
+      Alert("success", "New Project Added!!");
     } catch (err) {
-      console.log(err);
+      Alert("info", err.message);
     }
-
     setUpdateData((update) => !update);
     toggle();
-    Alert("success", "New Dashboard Added!!");
   };
 
   return (
@@ -98,7 +92,7 @@ export function CreateBoard({ toggle }) {
         </div>
         <div className="createboard-input-wrapper">
           <label htmlFor="" className="createboard-input-label">
-          Expiry Time
+            Expiry Time
           </label>
           <input
             name="expiryTime"
