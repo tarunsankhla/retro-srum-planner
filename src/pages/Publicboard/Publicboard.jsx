@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { AnonymousUser } from "utils/boardService";
 import { useAuth } from "context/AuthContext";
 import { getProjectData } from "utils/boardService";
+import { doc, onSnapshot } from "firebase/firestore";
+import { firestore } from "firebase.config";
 
 export const Publicboard = () => {
   const { userId, projectId } = useParams();
@@ -35,6 +37,12 @@ export const Publicboard = () => {
   useEffect(() => {
     getProjectData(setProject, userId, projectId, userState, navigate);
   }, [projectId, isModal]);
+
+  useEffect(()=>onSnapshot(doc(firestore, "users", `${userId}`), (doc) => {
+      const arr = Object.values(doc.data()).find(obj => obj.id === projectId)
+      setProject(arr)
+    })
+  ,[])
 
   return (
     <div className="publicboard-wrapper">
