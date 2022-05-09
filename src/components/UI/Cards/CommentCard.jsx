@@ -253,11 +253,8 @@ export const CommentCard = ({
 
 	const pinFeedback = (e) => {
 		e.preventDefault();
-		if (
-			userState.user.userId !== feedback.userId &&
-			userState.user.userId !== userId
-		) {
-			Alert("error", "You dont have access to others feedback");
+		if (userState.user.userId !== userId) {
+			Alert("error", "You dont have access to pin commentsk");
 
 			setIsCommentEditabe((s) => ({ ...s, commentId: "", commentText: "" }));
 			return;

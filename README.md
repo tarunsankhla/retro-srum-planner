@@ -26,13 +26,13 @@ NitroScrum is one stop solution for all the project activities and increase the 
 
 ### 3. Specific Reviews.
 
-- The dasshboard has 3 columns to actually give feebacks on what went well, what went wrong and improvements.
+- The dashboard has 3 columns to actually give feedbacks on what went well, what went wrong and improvements.
 
 - You can also name this columns according to your need so that manager of dashboard can take the required reviews.
 
 ### 4. Time Limit on Dashboard
 
-- The managers can set a time limit on the dashboard beyond which the dasboard won't be accessible for the users.
+- The managers can set a time limit on the dashboard beyond which the dashboard won't be accessible for the users.
 
 - The manager of dashboard would still have access to make changes beyond the time limit.
 
