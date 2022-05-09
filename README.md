@@ -1,6 +1,6 @@
 # NitroScrum
 <div align="center">
-<img alt="nitro-scrum" src="/src/data/logo/logo.svg"  />
+<img alt="nitro-scrum" src="https://github.com/tarunsankhla/retro-srum-planner/blob/bhushan/src/data/Logo/logo.svg"  />
 </div>
 NitroScrum is one stop solution for all the project activities and increase the overall productivity of a team or an individual. The tool helps project managers to get anonymous feedbacks from users to get sincere reviews from users without actually revealing their identities.
 
