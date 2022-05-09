@@ -126,3 +126,9 @@ button:disabled {
 .login-cta-buttons > div button {
   width: 49%;
 }
+
+@media screen and (max-width: 480px) {
+  .login-container {
+    width: 25rem;
+  }
+}

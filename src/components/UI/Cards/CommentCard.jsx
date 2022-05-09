@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router";
 import { getProjectData } from "utils/boardService";
 import "./CommentCard.css";
 import { v4 as uuid } from "uuid";
-import { BiPin, BiPinFill, PinDark } from "assets/images/images";
+import { BiPin, BiPinFill } from "assets/images/images";
 import { Alert } from "utils/alert";
 
 export const CommentCard = ({
@@ -24,7 +24,6 @@ export const CommentCard = ({
 
   const [flag, setFlag] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const [showCommentBox, setShowCommentBox] = useState(false); // By saurabh
   const [isComment, setIsComment] = useState(false);
   const [commentText, setCommentText] = useState("");
 
@@ -59,12 +58,7 @@ export const CommentCard = ({
       [project.key]: { ...project, [columnName]: columnUpdate },
     };
 
-    updateDoc(doctoupdate, updateObj)
-      .then((res) => {})
-      .catch((err) => {
-        console.log(err);
-      });
-
+    updateDoc(doctoupdate, updateObj);
     setTimeout(() => {
       toggleFlag();
     }, 200);
@@ -95,11 +89,7 @@ export const CommentCard = ({
       [project.key]: { ...project, [columnName]: columnUpdate },
     };
 
-    updateDoc(doctoupdate, updateObj)
-      .then((res) => {})
-      .catch((err) => {
-        console.log(err);
-      });
+    updateDoc(doctoupdate, updateObj);
 
     setTimeout(() => {
       toggleFlag();
@@ -149,11 +139,7 @@ export const CommentCard = ({
       [project.key]: { ...project, [columnName]: columnUpdate },
     };
 
-    updateDoc(doctoupdate, updateObj)
-      .then((res) => {})
-      .catch((err) => {
-        console.log(err);
-      });
+    updateDoc(doctoupdate, updateObj);
 
     setTimeout(() => {
       toggleFlag();
@@ -192,11 +178,7 @@ export const CommentCard = ({
       [project.key]: { ...project, [columnName]: columnUpdate },
     };
 
-    updateDoc(doctoupdate, updateObj)
-      .then((res) => {})
-      .catch((err) => {
-        console.log(err);
-      });
+    updateDoc(doctoupdate, updateObj);
 
     setTimeout(() => {
       toggleFlag();
@@ -238,11 +220,7 @@ export const CommentCard = ({
       [project.key]: { ...project, [columnName]: columnUpdate },
     };
 
-    updateDoc(doctoupdate, updateObj)
-      .then((res) => {})
-      .catch((err) => {
-        console.log(err);
-      });
+    updateDoc(doctoupdate, updateObj);
 
     setTimeout(() => {
       toggleFlag();
@@ -280,11 +258,7 @@ export const CommentCard = ({
       [project.key]: { ...project, [columnName]: columnUpdate },
     };
 
-    updateDoc(doctoupdate, updateObj)
-      .then((res) => {})
-      .catch((err) => {
-        console.log(err);
-      });
+    updateDoc(doctoupdate, updateObj);
 
     setTimeout(() => {
       toggleFlag();

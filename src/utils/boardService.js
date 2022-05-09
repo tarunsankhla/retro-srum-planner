@@ -20,13 +20,7 @@ import { Alert } from "./alert";
 
 function updateBoardData(boarddata, userId, projectId) {
   const doctoupdate = doc(firestore, `users/${userId}`, projectId);
-  updateDoc(doctoupdate, boarddata)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  updateDoc(doctoupdate, boarddata);
 }
 
 // signin with email password
@@ -45,11 +39,11 @@ const signInWithEmail = async (data, userDispatch, navigate) => {
       userId: response?.user?.uid ?? "",
       photo: response.user.photoURL ?? "",
     });
-    navigate("/dashboard");
+    navigate("/dashboard", { replace: true });
+    Alert("success", "SignIn Successfully!!");
   } catch (err) {
-    console.log("login eror", err);
+    Alert("error", err.message);
   }
-  Alert("success", "SignIn Successfully!!");
 };
 
 // signin with google
@@ -64,11 +58,11 @@ const LoginWIthGoogleAuth = async (userDispatch, navigate) => {
       userId: response?.user?.uid ?? "",
       photo: response.user.photoURL ?? "",
     });
-    navigate("/dashboard");
+    navigate("/dashboard", { replace: true });
+    Alert("success", "Logged In Successfully!");
   } catch (err) {
-    console.log("login gauth err", err);
+    Alert("error", err.message);
   }
-  Alert("success", "Logged In Successfully!");
 };
 
 const signupWithEmail = async (userDispatch, data, navigate) => {
@@ -86,12 +80,11 @@ const signupWithEmail = async (userDispatch, data, navigate) => {
       userId: response?.user?.uid ?? "",
       photo: response.user.photoURL ?? "",
     });
-    navigate("/");
+    navigate("/", { replace: true });
+    Alert("success", "SignUp Successfully!!");
   } catch (err) {
-    console.log("sign up err", err);
     Alert("error", err.message);
   }
-  Alert("success", "SignUp Successfully!!");
 };
 
 // get data
@@ -100,9 +93,7 @@ const getBoardData = async (setData, userId) => {
   try {
     const res1 = await getDoc(userRef);
     setData(res1.data() ?? {});
-    console.log(res1.data(), "huva");
   } catch (err) {
-    console.log(err);
     Alert("error", err.message);
   }
 };
@@ -128,37 +119,30 @@ const getProjectData = async (
 
     let diff = end - start;
     let seconds = Math.floor(diff / 1000 / 60);
-    console.log(seconds, project.expiryTime);
     if (seconds > project.expiryTime) {
-      console.log("projectId", userId, project.userId);
       if (userState.user.userId !== project.userId) {
-        // alert("Time expired");
         Alert("error", "Time Expired. Contact owner");
-        navigate("/");
+        navigate("/", { replace: true });
       }
     }
     setProject(project);
-    console.log({ project });
   } catch (error) {
-    console.log(error);
     Alert("error", error.message);
-    navigate("/404");
+    navigate("/404", { replace: true });
   }
 };
 
-function deleteProject(userId, projectId) {
+const deleteProject = async (userId, projectId) => {
   const doctoupdate = doc(firestore, `users/${userId}`);
-  updateDoc(doctoupdate, {
-    [projectId]: deleteField(),
-  })
-    .then((resp) => console.log(resp))
-    .catch((err) => {
-      console.log(err);
-      Alert("error", err.message);
+  try {
+    await updateDoc(doctoupdate, {
+      [projectId]: deleteField(),
     });
-
-  Alert("info", "Project Deleted!!");
-}
+    Alert("info", "Project Deleted!!");
+  } catch (err) {
+    Alert("error", err.message);
+  }
+};
 
 function cloneProject(boardObj, userId, dashboard) {
   boardObj.userId = userId;
@@ -166,23 +150,18 @@ function cloneProject(boardObj, userId, dashboard) {
   boardObj.createdTime = new Date().getTime();
   boardObj.createdOn = new Date().toDateString();
   const userRef = doc(firestore, `users/${userId}`);
-  console.log(boardObj);
   try {
     setDoc(userRef, {
       ...dashboard,
       [uuid()]: boardObj,
     });
   } catch (err) {
-    console.log(err);
     Alert("error", err.message);
   }
 }
-function AnonymousUser(userDispatch) {
-  console.log("anonymous");
-  signInAnonymously(firebaseAuth)
-    .then((response) => {
-      console.log(response);
-      // Signed in..
+const AnonymousUser = async (userDispatch) => {
+  try {
+    signInAnonymously(firebaseAuth).then((response) => {
       userDispatch({
         type: "userauth",
         token: response?.user?.accessToken ?? "",
@@ -191,20 +170,17 @@ function AnonymousUser(userDispatch) {
         userId: response?.user?.uid ?? "",
         photo: response.user.photoURL ?? "",
       });
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      Alert("error", error.message);
-      // ...
     });
-}
+  } catch (error) {
+    Alert("error", error.message);
+  }
+};
 
 const resetPassword = (email) => {
   try {
     sendPasswordResetEmail(firebaseAuth, email);
   } catch (error) {
-    console.log(error);
+    Alert("error", error.message);
   }
 };
 
