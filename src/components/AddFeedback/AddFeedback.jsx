@@ -44,12 +44,17 @@ export function AddFeedback({
 	const updateFeedback = (e) => {
 		e.preventDefault();
 
-		if (feedback.text.trim() === "") {
-			setError("Please enter some comment");
-			return;
-		} else {
-			setError("");
-		}
+    if(feedback.text.trim() === ""){
+      setError("Please enter some comment");
+      return 
+    }else{
+      setError("")
+    }
+    
+    if(userState.user.userId !== feedbackObj.userId && isEdit && userState.user.userId !== userId){
+      Alert("error","you are not valid to enter");
+      return
+    }
 
 		if (
 			userState.user.userId !== feedbackObj.userId &&
