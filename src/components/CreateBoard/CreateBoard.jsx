@@ -11,7 +11,7 @@ const initialBoardObject = {
   title: "",
   date: new Date(),
   createdTime: new Date().getTime(),
-  expiryTime: 0,
+  expiryTime: 5,
   maxVotes: 5,
   column1: {
     name: "Good features",
