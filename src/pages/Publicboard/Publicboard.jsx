@@ -49,10 +49,6 @@ export const Publicboard = () => {
       )}
       <div className=" flex-row-center flex-justify-space-between pd-point8-lr mg-point6-bot">
         <h1 className="title-lg">{project?.title}</h1>
-        <select className="publicboard-sorting">
-          <option>Sort by date</option>
-          <option>Sort by likes</option>
-        </select>
       </div>
       <hr className="break-line" />
       <div className="publicboard-body">
@@ -64,23 +60,24 @@ export const Publicboard = () => {
             setColumnName={setColumnName}
           />
           <div>
-            {Object.keys(project).length>0 && [
-              ...project?.column1?.feedbacks?.filter(
-                (feedback) => feedback.isPinned
-              ),
-              ...project?.column1?.feedbacks?.filter(
-                (feedback) => !feedback.isPinned
-              ),
-            ].map((feedback) => (
-              <CommentCard
-                setProject={setProject}
-                key={feedback.id}
-                project={project}
-                feedback={feedback}
-                columnName={"column1"}
-                color="went-well"
-              />
-            ))}
+            {Object.keys(project).length > 0 &&
+              [
+                ...project?.column1?.feedbacks?.filter(
+                  (feedback) => feedback.isPinned
+                ),
+                ...project?.column1?.feedbacks?.filter(
+                  (feedback) => !feedback.isPinned
+                ),
+              ].map((feedback) => (
+                <CommentCard
+                  setProject={setProject}
+                  key={feedback.id}
+                  project={project}
+                  feedback={feedback}
+                  columnName={"column1"}
+                  color="went-well"
+                />
+              ))}
           </div>
         </div>
         <div className="publicboard-improve">
@@ -91,23 +88,24 @@ export const Publicboard = () => {
             setColumnName={setColumnName}
           />
           <div>
-            {Object.keys(project).length>0 && [
-              ...project?.column2?.feedbacks?.filter(
-                (feedback) => feedback.isPinned
-              ),
-              ...project?.column2?.feedbacks?.filter(
-                (feedback) => !feedback.isPinned
-              ),
-            ].map((feedback) => (
-              <CommentCard
-                setProject={setProject}
-                key={feedback.id}
-                feedback={feedback}
-                columnName={"column2"}
-                project={project}
-                color="improve"
-              />
-            ))}
+            {Object.keys(project).length > 0 &&
+              [
+                ...project?.column2?.feedbacks?.filter(
+                  (feedback) => feedback.isPinned
+                ),
+                ...project?.column2?.feedbacks?.filter(
+                  (feedback) => !feedback.isPinned
+                ),
+              ].map((feedback) => (
+                <CommentCard
+                  setProject={setProject}
+                  key={feedback.id}
+                  feedback={feedback}
+                  columnName={"column2"}
+                  project={project}
+                  color="improve"
+                />
+              ))}
           </div>
         </div>
         <div className="publicboard-actions">
@@ -118,23 +116,24 @@ export const Publicboard = () => {
             setColumnName={setColumnName}
           />
           <div>
-            {Object.keys(project).length>0 && [
-              ...project?.column3?.feedbacks?.filter(
-                (feedback) => feedback.isPinned
-              ),
-              ...project?.column3?.feedbacks?.filter(
-                (feedback) => !feedback.isPinned
-              ),
-            ].map((feedback) => (
-              <CommentCard
-                setProject={setProject}
-                feedback={feedback}
-                key={feedback.id}
-                columnName={"column3"}
-                project={project}
-                color="action"
-              />
-            ))}
+            {Object.keys(project).length > 0 &&
+              [
+                ...project?.column3?.feedbacks?.filter(
+                  (feedback) => feedback.isPinned
+                ),
+                ...project?.column3?.feedbacks?.filter(
+                  (feedback) => !feedback.isPinned
+                ),
+              ].map((feedback) => (
+                <CommentCard
+                  setProject={setProject}
+                  feedback={feedback}
+                  key={feedback.id}
+                  columnName={"column3"}
+                  project={project}
+                  color="action"
+                />
+              ))}
           </div>
         </div>
       </div>
