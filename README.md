@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# NitroScrum
+<div align="center">
+<img alt="nitro-scrum" src="https://github.com/tarunsankhla/retro-srum-planner/blob/bhushan/src/data/Logo/logo.svg"  />
+</div>
+NitroScrum is one stop solution for all the project activities and increase the overall productivity of a team or an individual. The tool helps project managers to get anonymous feedbacks from users to get sincere reviews from users without actually revealing their identities.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br>
 
-## Available Scripts
+## Live Website: [NitroScrum](https://retroplanner.netlify.app/)
 
-In the project directory, you can run:
+<br>
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1. Anonymous Signin
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- User can signin anonymously and give feedbacks to the the public dashboards anonymously without saving any of their credentials anywhere.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. Cloning Dashboard
 
-### `npm run build`
+- Cloning dashboards allow us to create a clone of pre-existing dashboards.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- This feature comes in handy to the manager of the dashboard where they can actually keep a copy of the existing dashboard before making any changes to them.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. Specific Reviews.
 
-### `npm run eject`
+- The dashboard has 3 columns to actually give feedbacks on what went well, what went wrong and improvements.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- You can also name this columns according to your need so that manager of dashboard can take the required reviews.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 4. Time Limit on Dashboard
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- The managers can set a time limit on the dashboard beyond which the dashboard won't be accessible for the users.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- The manager of dashboard would still have access to make changes beyond the time limit.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 5. Feedbacks and Comments
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Anonymous user have privileges to update, add or remove his own feedbacks and comments
 
-### Code Splitting
+- Manager have access to add, modify and delete any comments on his created dashboard.
+### 6. Login and Signup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Apart from anonymous login user can user Google account or manual login to creat account
 
-### Analyzing the Bundle Size
+- Only Registered users are allowed to create their own dashboard.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 7. Forget Passwords.
 
-### Making a Progressive Web App
+- User can change their passwords in cas they forget their passwords.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- They user gets an password changing link on their emails through which they can change their forgetted paswords.
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

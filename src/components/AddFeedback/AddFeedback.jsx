@@ -116,7 +116,7 @@ export function AddFeedback({
         className="addfeedback-modal"
       >
         <div className="addfeedback-input-wrapper">
-          <label className="addfeedback-input-label" htmlFor="comments">
+          <label className="addfeedback-input-label mg-point6-bot" htmlFor="comments">
             {columnName === "" ? "Column Title" : columnName}
           </label>
           <input
@@ -131,6 +131,7 @@ export function AddFeedback({
         </div>
         <div className="addfeedback-cta">
           <button
+            style={{marginLeft:0}} 
             className="btn primary-btn-md"
             onClick={(e) => {
               updateFeedback(e);
