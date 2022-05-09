@@ -8,6 +8,9 @@ NitroScrum is one stop solution for all the project activities and increase the 
 
 ## Live Website: [NitroScrum](https://retroplanner.netlify.app/)
 
+Demo : 
+![nitroscrum](https://user-images.githubusercontent.com/92800463/167335321-e7e1b84c-11dd-456f-9f75-0c403487661e.gif)
+
 <br>
 
 ## Features
