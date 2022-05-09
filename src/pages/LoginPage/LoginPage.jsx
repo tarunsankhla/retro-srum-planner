@@ -12,9 +12,7 @@ export const LoginPage = () => {
 
 	const navigate = Navigate();
 	const { userState, userDispatch } = useAuth();
-	if (!!userState?.user?.emailId) {
-		navigate("/");
-	}
+
 	const loginClickHandler = (e) => {
 		e.preventDefault();
 		if (data.email.trim() === "" || data.password.trim() === "") {
@@ -30,6 +28,12 @@ export const LoginPage = () => {
 			[e.target.name]: e.target.value,
 		}));
 	};
+
+	useEffect(() => {
+		if (userState?.token) {
+			navigate("/");
+		}
+	}, []);
 
 	return (
 		<>
