@@ -26,7 +26,7 @@ export default function BoardCard({
   // copy URLto clipboard
   const urlClickHandler = () => {
     navigator.clipboard.writeText(
-      `retroplanner.netlify.app/publicdashboard/${userId}/${projectId}`
+      `https://retroplanner.netlify.app/publicdashboard/${userId}/${projectId}`
     );
     setShowCopied(true);
     setTimeout(() => {
