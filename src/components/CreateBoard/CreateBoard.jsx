@@ -32,6 +32,8 @@ export function CreateBoard({ toggle }) {
   const { userState } = useAuth();
   const { dashboard, setUpdateData } = useDashboard();
 
+  const [error,setError] = useState("");
+
   const changeHandler = (e) => {
     if (
       e.target.name === "column1" ||
@@ -56,10 +58,19 @@ export function CreateBoard({ toggle }) {
   };
 
   const addBoard = async () => {
+
+    if(boardObject.title.trim() === ""){
+      setError("Please enter title")
+      return
+    }else{
+      setError("")
+    }
+
     boardObject.userId = userState.user.userId;
     boardObject.id = uuid();
     boardObject.createdTime = new Date().getTime();
     boardObject.createdOn = new Date().toDateString();
+    boardObject.expiryTime = boardObject.expiryTime<1 ? 1:boardObject.expiryTime;
     const userRef = doc(firestore, `users/${userState.user.userId}`);
     try {
       await setDoc(userRef, {
@@ -89,10 +100,11 @@ export function CreateBoard({ toggle }) {
             type="text"
             className="createboard-input"
           />
+          {error !== "" && <span style={{color:"red"}}>{error}</span>}
         </div>
         <div className="createboard-input-wrapper">
           <label htmlFor="" className="createboard-input-label">
-            Expiry Time
+            Expiry Time (in mins)
           </label>
           <input
             name="expiryTime"
@@ -101,6 +113,7 @@ export function CreateBoard({ toggle }) {
             type="number"
             className="createboard-input"
             placeholder="in mins"
+            min="1"
           />
         </div>
         <span className="createboard-input-label">Review Columns</span>
@@ -135,7 +148,7 @@ export function CreateBoard({ toggle }) {
           />
         </div>
         <div className="createboard-cta">
-          <button className="btn primary-btn-md" onClick={addBoard}>
+          <button style={{marginLeft:0}} className="btn primary-btn-md" onClick={addBoard}>
             Add
           </button>
           <button onClick={toggle} className="btn primary-outline-btn-md">
